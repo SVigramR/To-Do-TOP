@@ -1,0 +1,25 @@
+Array variable
+
+class todos
+    createTaskObject(title,description,duedate,priority,project,checked)
+        taskObject = {}
+        append taskobject to array variable
+
+    filterTaskArray(projectName)
+        filter the objects using project key/value 
+        return that object
+    
+class storage
+    updateStorage  
+        convert the array to string and use setitem to local storage
+    
+    retrieveStorage
+        parse the string and use getitem to retrieve from local storage
+
+class project
+    createProject(projectName)
+        create a object with inbox as default key/value
+        if the object already have the projectName
+            return project name already exists
+        else 
+            append the projectName as key and an empty array as value
