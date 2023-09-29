@@ -3,6 +3,9 @@ import './style.css';
 console.log("Test Run")
 
 let inboxArray = []
+let inboxObject = {
+    inbox: inboxArray,
+}
 
 class todos {
 
@@ -15,7 +18,7 @@ class todos {
             project: project,
             checked: checked,
         }
-        return taskObject
+        return inboxArray.push(taskObject)
     }
 
     filterTaskArray(projectValue) {
@@ -33,7 +36,7 @@ class storage extends todos {
     }
 
     updateStorage() {
-        localStorage.setItem(JSON.stringify("task",inboxArray))
+        localStorage.setItem("task", JSON.stringify(inboxObject))
     }
 
     retrieveStorage() {
@@ -47,16 +50,35 @@ class projects extends storage {
     }
 
     createProject(projectName) {
-        let projects = {
-            inbox: inboxArray,
-        }
-        if (Object.keys(projects) === projectName) {
+        if (Object.keys(inboxObject) === projectName) {
             return `Project name (${projectName}) already exists`
         } else {
-            return projects[projectName] = []
+            return inboxObject[projectName] = []
+        }
+    }
+
+    updateProject(updateProjectArray) {
+        let updater = this.filterTaskArray(updateProjectArray)
+        for (let index = 0; index < updater.length; index++) {
+            const element = updater[index]
+            inboxObject[updateProjectArray].push(element)
         }
     }
 }
 
-const todo = new projects()
-console.log(todo.createTaskObject('testtwo', 'testing the code', '09/28/2023', 'Medium'))
+function init() {
+    const todo = new projects()
+    todo.createTaskObject('testtwo', 'testing the code', '09/28/2023', 'Medium')
+    todo.createTaskObject('testOne', 'testing the code', '09/28/2023', 'Medium')
+    todo.createTaskObject('testthree', 'testing the code', '09/28/2023', 'High', 'hello')
+    todo.createTaskObject('testfour', 'testing the code', '09/28/2023', 'Low', 'hello')
+    todo.createTaskObject('testfive', 'testing the code', '09/28/2023', 'Medium')
+    console.log(todo.filterTaskArray('hello'))
+    todo.createProject("hello")
+    todo.updateProject("hello")
+    todo.updateStorage()
+    console.log(inboxArray)
+    console.log(inboxObject)
+}
+
+init()

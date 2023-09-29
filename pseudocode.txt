@@ -18,8 +18,16 @@ class storage
 
 class project
     createProject(projectName)
-        create a object with inbox as default key/value
-        if the object already have the projectName
+        if the inboxobject already have the projectName
             return project name already exists
         else 
             append the projectName as key and an empty array as value
+
+    updateProject
+        filter the project tasks and update it the object value array
+        
+
+function addtask
+
+funtion init
+    all executing code here
