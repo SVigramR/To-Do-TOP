@@ -90,7 +90,7 @@ openTaskForm.addEventListener('click', () => {
 
 popupBackground.forEach(background => {
     background.addEventListener('click', () => {
-        document.getElementById('addTaskPopup').classList.remove('active')
+        background.classList.remove('active')
     })
 })
 
