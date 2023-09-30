@@ -7,25 +7,33 @@
     <title>To Do</title>
 </head>
 <body>
-    <div class="title-container">
-        <h1 id="title">Let's Do It</h1>
+    <div data-background class="popup" id="addTaskPopup">
+        <div class="overlay" id="addTaskOverlay"></div>
+        <div class="form" id="addTaskForm"></div>
     </div>
-    <div class="menu-container">
-        <nav class="nav">
-            <ul class="task-menu">
-                <li class="task-list">Inbox</li>
-                <li class="task-list">Today</li>
-                <li class="task-list">Week</li>
-                <li class="task-list">Upcoming</li>
-                <li class="task-list">Pending</li>
-                <li class="task-list">Completed</li>
-            </ul>
-            <ul class="project-menu">
-            </ul>
-        </nav>
-        <div class="add-task" id="addTask">+</div>
-    </div>
-    <div id="task-container">
+    <div id="content">
+        <div class="title-container">
+            <h1 id="title">Let's Do It</h1>
+        </div>
+        <div class="menu-container">
+            <nav class="nav">
+                <ul class="task-menu">
+                    <li class="task-list">Inbox</li>
+                    <li class="task-list">Today</li>
+                    <li class="task-list">Week</li>
+                    <li class="task-list">Upcoming</li>
+                    <li class="task-list">Pending</li>
+                    <li class="task-list">Completed</li>
+                </ul>
+                <ul class="project-menu">
+                </ul>
+            </nav>
+            <div class="add-task" id="addTask">+</div>
+        </div>
+        <div id="task-container">
+            <!-- <div class="add-task" id="addTask">+</div> -->
+        </div>
+
     </div>
 </body>
 </html>
