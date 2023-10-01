@@ -1,4 +1,5 @@
 import './style.css';
+import popupListener from './modules/popup.js';
 
 console.log("Test Run")
 
@@ -77,21 +78,9 @@ function init() {
     todo.createProject("hello")
     todo.updateProject("hello")
     todo.updateStorage()
+    popupListener()
     console.log(inboxArray)
     console.log(inboxObject)
 }
-
-const openTaskForm = document.querySelector('#addTask')
-const popupBackground = document.querySelectorAll('[data-background]')
-
-openTaskForm.addEventListener('click', () => {
-    document.getElementById('addTaskPopup').classList.add('active')
-})
-
-popupBackground.forEach(background => {
-    background.addEventListener('click', () => {
-        background.classList.remove('active')
-    })
-})
 
 init()

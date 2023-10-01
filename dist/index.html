@@ -7,9 +7,38 @@
     <title>To Do</title>
 <script defer src="bundle.js"></script></head>
 <body>
-    <div data-background class="popup" id="addTaskPopup">
-        <div class="overlay" id="addTaskOverlay"></div>
-        <div class="form" id="addTaskForm"></div>
+    <div class="popup" id="addTaskPopup">
+        <div data-background class="overlay" id="addTaskOverlay"></div>
+        <div class="form flex-column" id="addTaskForm">
+            <div class="addTaskHeader">
+                <h1 class="addFormTitle">Create a...</h1>
+                <div data-close class="addTaskClose">x</div>
+            </div>
+            <div class="addFormButton">
+                <button class="btn btn-1">Task</button>
+                <button class="btn btn-1">Project</button>
+            </div>
+            <form class="form-1 flex-column" action="">
+                <label for="ftitle">Title:</label>
+                <input type="text" id="ftitle" placeholder="Title" required>
+                <label for="fdescription">Description:</label>
+                <input type="text" id="fdescription" placeholder="Description">
+                <label for="ftitle">Date:</label>
+                <input type="date" id="fdate">
+                <label for="fpriority">Priority:</label>
+                <select id="fpriority" name="priority" required>
+                    <option value="none">None</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <label for="fproject">Project:</label>
+                <select id="fproject" name="project" required>
+                    <option value="inbox">Inbox</option>
+                </select> 
+                <input type="submit" value="Add Task" class="addSubmit">
+            </form>
+        </div>
     </div>
     <div id="content">
         <div class="title-container">
