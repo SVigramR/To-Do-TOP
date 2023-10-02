@@ -159,17 +159,13 @@ li {
     font-family: lato, sans-serif;
 }
 
-#addTaskForm form input {
+#addTaskForm form input, select {
     margin-bottom: 1rem;
 }
 
 .addSubmit {
     transition: 200ms ease-in-out;
 }
-
-/* .form-1 {
-
-} */
 
 .flex-column {
     display: flex;

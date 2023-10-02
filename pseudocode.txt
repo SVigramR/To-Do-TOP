@@ -1,4 +1,5 @@
 Array variable
+Object variable
 
 class todos
     createTaskObject(title,description,duedate,priority,project,checked)
@@ -28,6 +29,19 @@ class project
         
 
 function addtask
+    Get the details from the add form
+    insert it to the local storage using the classes
+    retrieve the object and run a function that adds the task ui
+
+function addProject
+    Add the project to the localstorage object
+    Insert project into menubar and form selection
+
+function projectForm
+    when the project button is clicked remove the existing form content in task form
+    then append the contents needed for project form input
+
+function 
 
 funtion init
     all executing code here

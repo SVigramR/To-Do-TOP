@@ -8,79 +8,55 @@ let inboxObject = {
     inbox: inboxArray,
 }
 
-class todos {
-
-    createTaskObject(title, description, dueDate, priority, project="inbox", checked=false) {
-        let taskObject = {
-            title: title,
-            description: description,
-            dueDate: dueDate,
-            priority: priority,
-            project: project,
-            checked: checked,
-        }
-        return inboxArray.push(taskObject)
-    }
-
-    filterTaskArray(projectValue) {
-        const filteredInbox = inboxArray.filter((project) => {
-            return project.project === projectValue
-        })
-        return filteredInbox
+function createObjectTask(title, description, dueDate, priority, project) {
+    return {
+        title: title,
+        description: description,
+        dueDate: dueDate,
+        priority: priority,
+        project: project,
+        checked: false,
     }
 }
 
-class storage extends todos {
+const myForm = document.getElementById('formOne')
+
+myForm.addEventListener('submit', (event) => {
+    event.preventDefault();
     
-    constructor() {
-        super()
-    }
+    let titleInput = document.getElementById('ftitle').value
+    let descriptionInput = document.getElementById('fdescription').value
+    let dateInput = document.getElementById('fdate').value
+    let priorityInput = document.getElementById('fpriority').value
+    let projectInput = document.getElementById('fproject').value
 
-    updateStorage() {
-        localStorage.setItem("task", JSON.stringify(inboxObject))
-    }
+    addTask(titleInput, descriptionInput, dateInput, priorityInput, projectInput)
+    localStorage.setItem('task', JSON.stringify(inboxObject))
+    myForm.reset();
+    console.log(inboxArray);
+})
 
-    retrieveStorage() {
-        JSON.parse(localStorage.getItem("task"))
+function storage() {
+    if (localStorage.getItem('task') !== null) {
+        const getItem = JSON.parse(localStorage.getItem('task'))
+        const inbox = getItem.inbox
+        for (let index = 0; index < inbox.length; index++) {
+            inboxArray.push(inbox[index])
+        }
     }
 }
 
-class projects extends storage {
-    constructor() {
-        super()
-    }
-
-    createProject(projectName) {
-        if (Object.keys(inboxObject) === projectName) {
-            return `Project name (${projectName}) already exists`
-        } else {
-            return inboxObject[projectName] = []
-        }
-    }
-
-    updateProject(updateProjectArray) {
-        let updater = this.filterTaskArray(updateProjectArray)
-        for (let index = 0; index < updater.length; index++) {
-            const element = updater[index]
-            inboxObject[updateProjectArray].push(element)
-        }
-    }
+function addTask(title, description, dueDate, priority, project) {
+    let todos = createObjectTask(title, description, dueDate, priority, project)
+    inboxArray.push(todos)
 }
 
 function init() {
-    const todo = new projects()
-    todo.createTaskObject('testtwo', 'testing the code', '09/28/2023', 'Medium')
-    todo.createTaskObject('testOne', 'testing the code', '09/28/2023', 'Medium')
-    todo.createTaskObject('testthree', 'testing the code', '09/28/2023', 'High', 'hello')
-    todo.createTaskObject('testfour', 'testing the code', '09/28/2023', 'Low', 'hello')
-    todo.createTaskObject('testfive', 'testing the code', '09/28/2023', 'Medium')
-    console.log(todo.filterTaskArray('hello'))
-    todo.createProject("hello")
-    todo.updateProject("hello")
-    todo.updateStorage()
     popupListener()
-    console.log(inboxArray)
-    console.log(inboxObject)
 }
 
 init()
+
+window.onload = () => {
+    storage()
+} 
