@@ -22,7 +22,8 @@ function createForms() {
                     <button type="submit" id="addSubmit" class="addSubmit">Add Task</button>`
 
     let projectHTML = `<label for="formProject">Project</label>
-                        <input type="text" id="formProject" name="formProject" placeholder="Project: Study-Planner, Gym, Travel" required>`
+                        <input type="text" id="formProject" name="formProject" placeholder="Project: Study-Planner, Gym, Travel" required>
+                        <button type="submit" id="addSubmit" class="addSubmit">Add Project</button>`
 
     taskButton.addEventListener('click', () => {
         forms.innerHTML = ''
