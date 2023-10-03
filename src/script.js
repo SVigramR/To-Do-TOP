@@ -1,5 +1,6 @@
 import './style.css';
 import popupListener from './modules/popup.js';
+import createForms from './modules/forms';
 
 console.log("Test Run")
 
@@ -53,6 +54,7 @@ function addTask(title, description, dueDate, priority, project) {
 
 function init() {
     popupListener()
+    createForms()
 }
 
 init()
