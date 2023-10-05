@@ -1,3 +1,5 @@
+import { projectOption } from "./options.js"
+
 function createForms() {
     const taskButton = document.getElementById('createTask')
     const projectButton = document.getElementById('createProject')
@@ -28,6 +30,7 @@ function createForms() {
     taskButton.addEventListener('click', () => {
         forms.innerHTML = ''
         forms.innerHTML += taskHTML
+        projectOption()
     })
 
     projectButton.addEventListener('click', () => {
