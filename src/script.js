@@ -20,6 +20,29 @@ function createObjectTask(title, description, dueDate, priority, project) {
     }
 }
 
+function filterTaskArray(projectValue) {
+    const filteredInbox = inboxArray.filter((project) => {
+        return project.project === projectValue
+    })
+    return filteredInbox
+}
+
+function createProject(projectName) {
+    if (Object.keys(inboxObject) === projectName) {
+        return `Project name (${projectName}) already exists`
+    } else {
+        return inboxObject[projectName] = []
+    }
+}
+
+function updateProject(updateProjectArray) {
+    let updater = filterTaskArray(updateProjectArray)
+    for (let index = 0; index < updater.length; index++) {
+        const element = updater[index]
+        inboxObject[updateProjectArray].push(element)
+    }
+}
+
 const myForm = document.getElementById('formOne')
 
 myForm.addEventListener('submit', (event) => {

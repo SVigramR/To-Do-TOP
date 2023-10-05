@@ -20,7 +20,7 @@
 }
 
 .menu-container {
-    background-color: rgb(150, 155, 148);
+    background-color: #969b94;
     padding: 4rem;
     color: rgb(11, 46, 1);
     -ms-grid-row: 2;
@@ -53,11 +53,14 @@
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 3rem;
     font-weight: 500;
-    padding: 5px;
+    padding: 5px 5px 5px 10px;
+    border-radius: 10px;
 }
 
 .task-hover:hover {
     font-weight: 700;
+    cursor: pointer;
+    background-color: #868885;
 }
 
 .task-list:first-child {
