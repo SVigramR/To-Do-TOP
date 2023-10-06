@@ -1,6 +1,7 @@
 import './style.css';
 import popupListener from './modules/popup.js';
 import createForms from './modules/forms';
+import { projectOption } from './modules/options';
 
 console.log("Test Run")
 

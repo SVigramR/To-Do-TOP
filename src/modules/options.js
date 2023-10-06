@@ -1,5 +1,6 @@
-const project = document.getElementById('fproject')
+
 function projectOption() {
+    const project = document.getElementById('fproject')
     const projectOptionStorage = JSON.parse(localStorage.getItem('task'))
     console.log(typeof(projectOptionStorage))
     let projectKeys = Object.keys(projectOptionStorage)
