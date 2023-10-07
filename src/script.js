@@ -1,7 +1,7 @@
 import './style.css';
 import popupListener from './modules/popup.js';
 import createForms from './modules/forms';
-import { projectOption } from './modules/options';
+import { createProjectDom } from './modules/modal';
 
 console.log("Test Run")
 
@@ -60,11 +60,12 @@ myForm.addEventListener('submit', (event) => {
     } else if (document.getElementById('formProject') !== null) {
         let addProjectInput = document.getElementById('formProject').value
         createProject(addProjectInput)
+        createProjectDom(addProjectInput)
         localStorage.setItem('task', JSON.stringify(inboxObject))
     }
 
     myForm.reset();
-    console.log(inboxArray);
+    console.log('Add Button Clicked');
 })
 
 function retrieveStorage() {
@@ -81,8 +82,9 @@ function retrieveStorage() {
             for (let j = 0; j < filterProject.length; j++) {
                 inboxObject[objectKeys[index]].push(filterProject[j]);
             }
+            createProjectDom(objectKeys[index])
         }
-        console.log(inboxObject)
+        console.log('Storage Retrival')
     }
 }
 

@@ -80,7 +80,7 @@
     align-items: center;
     padding-bottom: 4px;
     border-radius: 50%;
-    background-color: #79ff74;
+    background: linear-gradient(to right, #f56f0e, #3622af);
     font-size: 5rem;
     line-height: 5rem;
     color: #202720;
