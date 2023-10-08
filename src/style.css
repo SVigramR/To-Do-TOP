@@ -90,14 +90,32 @@
     display: flex;
 }
 
+li {
+    list-style: none;
+}
+
+/* Task Section */
 .task-container {
     background-color: azure;
     grid-row: 2/3;
     grid-column: 2/3;
+    gap: 10px;
 }
 
-li {
-    list-style: none;
+.task-div {
+    height: 4rem;
+    width: auto;
+    margin: 10px;
+    background-color: #959a93;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.task-div img {
+    height: 2rem;
+    width: 2rem;
 }
 
 /* Popups */

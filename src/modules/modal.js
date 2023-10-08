@@ -1,3 +1,8 @@
+import reportIcon from '../Icons/report.png'
+import detailIcon from '../Icons/text-file.png'
+import deleteIcon from '../Icons/delete.png'
+
+
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
     const listItem = document.createElement('li')
@@ -6,7 +11,43 @@ function createProjectDom(projectName) {
     projectMenu.appendChild(listItem)
 }
 
-function createTaskDom() {
+function createTaskDom(index, title, date, priority) {
+    const taskContainer = document.getElementById('task-container')
+    const taskDiv = document.createElement('div')
+    taskDiv.setAttribute('id', index)
+    taskDiv.classList.add('task-div')
+
+    const checkBox = document.createElement('input')
+    checkBox.setAttribute('type', 'checkbox')
+    const taskTitle = document.createElement('p')
+    taskTitle.textContent = title
+    const taskDate = document.createElement('p')
+    taskDate.textContent = date
+
+    const changePriority = document.createElement('img')
+    changePriority.setAttribute('src', reportIcon)
+    const showDescription = document.createElement('img')
+    showDescription.setAttribute('src', detailIcon)
+    const taskDelete = document.createElement('img')
+    taskDelete.setAttribute('src', deleteIcon)
+    
+    taskDiv.append(checkBox, taskTitle, taskDate, changePriority, showDescription, taskDelete)
+    taskContainer.appendChild(taskDiv)
+}
+
+function toggleCheck() {
+
+}
+
+function updatePriority() {
+
+}
+
+function stylePriority() {
+
+}
+
+function deleteTaskDom() {
 
 }
 
