@@ -95,7 +95,7 @@ function retrieveStorage() {
 function addTask(title, description, dueDate, priority, project) {
     let todos = createObjectTask(title, description, dueDate, priority, project)
     inboxArray.push(todos)
-    inboxObject[project].push(todos)
+    if (project !== 'inbox') inboxObject[project].push(todos);
 }
 
 function init() {
