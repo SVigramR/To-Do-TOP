@@ -1,7 +1,7 @@
 import './style.css';
 import popupListener from './modules/popup.js';
 import createForms from './modules/forms';
-import { createProjectDom, createTaskDom } from './modules/modal';
+import { createProjectDom, createTaskDom, projectEventListener } from './modules/modal';
 
 console.log("Test Run")
 
@@ -21,7 +21,7 @@ function createObjectTask(title, description, dueDate, priority, project) {
     }
 }
 
-function filterTaskArray(projectValue) {
+export function filterTaskArray(projectValue) {
     const filteredInbox = inboxArray.filter((project) => {
         return project.project === projectValue
     })
@@ -84,11 +84,15 @@ function retrieveStorage() {
             }
             createProjectDom(objectKeys[index])
         }
-        for (let index = 0; index < inboxArray.length; index++) {
-            const objectValue = Object.values(inboxArray[index])
-            createTaskDom(index.toString(), objectValue[0], objectValue[2], objectValue[3])
-        }
+        appendTasks()
         console.log('Storage Retrival')
+    }
+}
+
+export function appendTasks() {
+    for (let index = 0; index < inboxArray.length; index++) {
+        const objectValue = Object.values(inboxArray[index])
+        createTaskDom(index.toString(), objectValue[0], objectValue[2], objectValue[3])
     }
 }
 
@@ -101,6 +105,7 @@ function addTask(title, description, dueDate, priority, project) {
 function init() {
     popupListener()
     createForms()
+    projectEventListener()
 }
 
 init()

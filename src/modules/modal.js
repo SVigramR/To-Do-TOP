@@ -1,6 +1,7 @@
 import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
+import { appendTasks } from '../script'
 
 
 function createProjectDom(projectName) {
@@ -47,4 +48,17 @@ function deleteTaskDom() {
 
 }
 
-export {createProjectDom, createTaskDom};
+function projectEventListener() {
+    const projectDiv = document.querySelectorAll('.task-list')
+    const taskContainer = document.getElementById('task-container')
+    projectDiv.forEach(project => {
+        project.addEventListener('click', () => {
+            if (project.id === 'inbox') {
+                taskContainer.innerHTML = ''
+                appendTasks()
+            }
+        })
+    });
+}
+
+export {createProjectDom, createTaskDom, projectEventListener};
