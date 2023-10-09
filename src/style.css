@@ -118,6 +118,22 @@ li {
     width: 2rem;
 }
 
+.none {
+    background-color: #969b94;
+}
+
+.high {
+    background-color: #f56f0e;
+}
+
+.medium {
+    background-color: #3622af;
+}
+
+.low {
+    background-color: #79ff74;
+}
+
 /* Popups */
 .popup .overlay {
     position: fixed;

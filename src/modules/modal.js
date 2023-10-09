@@ -15,7 +15,7 @@ function createTaskDom(index, title, date, priority) {
     const taskContainer = document.getElementById('task-container')
     const taskDiv = document.createElement('div')
     taskDiv.setAttribute('id', index)
-    taskDiv.classList.add('task-div')
+    taskDiv.classList.add('task-div', priority)
 
     const checkBox = document.createElement('input')
     checkBox.setAttribute('type', 'checkbox')
@@ -40,10 +40,6 @@ function toggleCheck() {
 }
 
 function updatePriority() {
-
-}
-
-function stylePriority() {
 
 }
 
