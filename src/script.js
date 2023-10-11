@@ -56,6 +56,7 @@ myForm.addEventListener('submit', (event) => {
         let projectInput = document.getElementById('fproject').value
     
         addTask(titleInput, descriptionInput, dateInput, priorityInput, projectInput)
+        createTaskDom(inboxArray.length.toString(), titleInput, dateInput, priorityInput)
         localStorage.setItem('task', JSON.stringify(inboxObject))
     } else if (document.getElementById('formProject') !== null) {
         let addProjectInput = document.getElementById('formProject').value
