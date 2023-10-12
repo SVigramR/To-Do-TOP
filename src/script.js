@@ -73,7 +73,7 @@ function retrieveStorage() {
     if (localStorage.getItem('task') !== null) {
         const getItem = JSON.parse(localStorage.getItem('task'))
         const inbox = getItem.inbox
-        for (let index = 0; index < inbox.length; index++) {
+        for (let index = 0; index < inbox.length; index++) { 
             inboxArray.push(inbox[index])
         }
         const objectKeys = Object.keys(getItem)
@@ -113,4 +113,5 @@ init()
 
 window.onload = () => {
     retrieveStorage()
+    projectEventListener()
 } 

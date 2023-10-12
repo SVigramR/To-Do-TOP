@@ -1,7 +1,7 @@
 import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
-import { appendTasks } from '../script'
+import { appendTasks, filterTaskArray } from '../script'
 
 
 function createProjectDom(projectName) {
@@ -50,13 +50,23 @@ function deleteTaskDom() {
 }
 
 function projectEventListener() {
-    const projectDiv = document.querySelectorAll('.task-list')
+    const defaultProjectDiv = document.querySelectorAll('.task-list')
     const taskContainer = document.getElementById('task-container')
-    projectDiv.forEach(project => {
-        project.addEventListener('click', () => {
-            if (project.id === 'inbox') {
+    const getItem = JSON.parse(localStorage.getItem('task'))
+    const projectKeys = Object.keys(getItem)
+    defaultProjectDiv.forEach(defaultProject => {
+        defaultProject.addEventListener('click', () => {
+            if (defaultProject.id === 'inbox') {
                 taskContainer.innerHTML = ''
                 appendTasks()
+            } else if (projectKeys.includes(defaultProject.id)) {
+                taskContainer.innerHTML = ''
+                const filtered = filterTaskArray(defaultProject.id)
+                console.log(filtered)
+                for (let index = 0; index < filtered.length; index++) {
+                    const filteredValue = Object.values(filtered[index])
+                    createTaskDom(index.toString(), filteredValue[0], filteredValue[2], filteredValue[3])
+                }
             }
         })
     });
