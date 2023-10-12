@@ -5,8 +5,8 @@ import { createProjectDom, createTaskDom, projectEventListener } from './modules
 
 console.log("Test Run")
 
-let inboxArray = []
-let inboxObject = {
+export let inboxArray = []
+export let inboxObject = {
     inbox: inboxArray,
 }
 
@@ -42,6 +42,16 @@ function updateProject(updateProjectArray) {
         const element = updater[index]
         inboxObject[updateProjectArray].push(element)
     }
+}
+
+export function findProjectIndex(mainArray, project) {
+    let indexNumber = [];
+    mainArray.forEach((element, index) => {
+        if (element.project === project) {
+            indexNumber.push(index.toString())
+        }
+    });
+    return indexNumber;
 }
 
 const myForm = document.getElementById('formOne')

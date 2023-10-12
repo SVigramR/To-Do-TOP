@@ -1,7 +1,7 @@
 import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
-import { appendTasks, filterTaskArray } from '../script'
+import { appendTasks, filterTaskArray, findProjectIndex, inboxArray } from '../script'
 
 
 function createProjectDom(projectName) {
@@ -63,9 +63,10 @@ function projectEventListener() {
                 taskContainer.innerHTML = ''
                 const filtered = filterTaskArray(defaultProject.id)
                 console.log(filtered)
+                let findTaskIndex = findProjectIndex(inboxArray, defaultProject.id)
                 for (let index = 0; index < filtered.length; index++) {
                     const filteredValue = Object.values(filtered[index])
-                    createTaskDom(index.toString(), filteredValue[0], filteredValue[2], filteredValue[3])
+                    createTaskDom(findTaskIndex[index], filteredValue[0], filteredValue[2], filteredValue[3])  
                 }
             }
         })
