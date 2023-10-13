@@ -33,5 +33,9 @@ module.exports = {
             filename: 'index.html',
             template: 'src/index.html',
         }),
+        // new webpack.ContextReplacementPlugin(
+        //     /^date-fns[/\\]locale$/,
+        //     new RegExp(`\\.[/\\\\](${supportedLocales.join('|')})[/\\\\]index\\.js$`)
+        // ),
     ]
 }
