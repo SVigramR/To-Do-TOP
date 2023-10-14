@@ -2,8 +2,12 @@ import './style.css';
 import popupListener from './modules/popup.js';
 import createForms from './modules/forms';
 import { createProjectDom, createTaskDom, projectEventListener } from './modules/modal';
+import { formatDate } from './modules/date';
+import { isToday, parseISO } from 'date-fns';
 
 console.log("Test Run")
+console.log(isToday(parseISO("Sep 13th 2023")))
+console.log(formatDate('2023-02-12'))
 
 export let inboxArray = []
 export let inboxObject = {
@@ -65,8 +69,8 @@ myForm.addEventListener('submit', (event) => {
         let priorityInput = document.getElementById('fpriority').value
         let projectInput = document.getElementById('fproject').value
     
-        addTask(titleInput, descriptionInput, dateInput, priorityInput, projectInput)
-        createTaskDom(inboxArray.length.toString(), titleInput, dateInput, priorityInput)
+        addTask(titleInput, descriptionInput, formatDate(dateInput), priorityInput, projectInput)
+        createTaskDom(inboxArray.length.toString(), titleInput, formatDate(dateInput), priorityInput)
         localStorage.setItem('task', JSON.stringify(inboxObject))
     } else if (document.getElementById('formProject') !== null) {
         let addProjectInput = document.getElementById('formProject').value
@@ -123,5 +127,4 @@ init()
 
 window.onload = () => {
     retrieveStorage()
-    projectEventListener()
 } 

@@ -1,8 +1,8 @@
 import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
-import { appendTasks, filterTaskArray, findProjectIndex, inboxArray } from '../script'
-
+import { appendTasks, filterTaskArray, findProjectIndex, inboxArray, inboxObject } from '../script'
+import { filterDate, formatDate } from './date'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -37,18 +37,6 @@ function createTaskDom(index, title, date, priority) {
     taskContainer.appendChild(taskDiv)
 }
 
-function toggleCheck() {
-
-}
-
-function updatePriority() {
-
-}
-
-function deleteTaskDom() {
-
-}
-
 function projectEventListener() {
     const defaultProjectDiv = document.querySelectorAll('.task-list')
     const taskContainer = document.getElementById('task-container')
@@ -59,17 +47,19 @@ function projectEventListener() {
             if (defaultProject.id === 'inbox') {
                 taskContainer.innerHTML = ''
                 appendTasks()
+            } else if (defaultProject.id === 'today') {
+                taskContainer.innerHTML = ''
+                console.log(filterDate(formatDate(new Date()), inboxArray))
             } else if (projectKeys.includes(defaultProject.id)) {
                 taskContainer.innerHTML = ''
                 const filtered = filterTaskArray(defaultProject.id)
-                console.log(filtered)
                 let findTaskIndex = findProjectIndex(inboxArray, defaultProject.id)
                 for (let index = 0; index < filtered.length; index++) {
                     const filteredValue = Object.values(filtered[index])
                     createTaskDom(findTaskIndex[index], filteredValue[0], filteredValue[2], filteredValue[3])  
                 }
             }
-        })
+        });
     });
 }
 
