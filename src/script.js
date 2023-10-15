@@ -1,7 +1,7 @@
 import './style.css';
 import popupListener from './modules/popup.js';
 import createForms from './modules/forms';
-import { createProjectDom, createTaskDom, projectEventListener } from './modules/modal';
+import { createProjectDom, createTaskDom, dateEventListener, projectEventListener } from './modules/modal';
 import { formatDate } from './modules/date';
 import { isToday, parseISO } from 'date-fns';
 
@@ -120,6 +120,7 @@ function addTask(title, description, dueDate, priority, project) {
 function init() {
     popupListener()
     createForms()
+    dateEventListener()
     projectEventListener()
 }
 
@@ -127,4 +128,5 @@ init()
 
 window.onload = () => {
     retrieveStorage()
+    projectEventListener()
 } 

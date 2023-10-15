@@ -9,7 +9,7 @@ function createProjectDom(projectName) {
     const listItem = document.createElement('li')
     listItem.textContent = projectName
     listItem.setAttribute('id', projectName)
-    listItem.classList.add('task-list', 'task-hover')
+    listItem.classList.add('task-list', 'project-list', 'task-hover')
     projectMenu.appendChild(listItem)
 }
 
@@ -37,11 +37,9 @@ function createTaskDom(index, title, date, priority) {
     taskContainer.appendChild(taskDiv)
 }
 
-function projectEventListener() {
+function dateEventListener() {
     const defaultProjectDiv = document.querySelectorAll('.task-list')
     const taskContainer = document.getElementById('task-container')
-    const getItem = JSON.parse(localStorage.getItem('task'))
-    const projectKeys = Object.keys(getItem)
     defaultProjectDiv.forEach(defaultProject => {
         defaultProject.addEventListener('click', () => {
             if (defaultProject.id === 'inbox') {
@@ -55,7 +53,19 @@ function projectEventListener() {
                     const filteredTodayValue = Object.values(filteredToday[index])
                     createTaskDom(findTodayIndex[index], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
                 }
-            } else if (projectKeys.includes(defaultProject.id)) {
+            }
+        });
+    });
+}
+
+function projectEventListener() {
+    const defaultProjectDiv = document.querySelectorAll('.project-list')
+    const taskContainer = document.getElementById('task-container')
+    const getItem = JSON.parse(localStorage.getItem('task'))
+    const projectKeys = Object.keys(getItem)
+    defaultProjectDiv.forEach(defaultProject => {
+        defaultProject.addEventListener('click', () => {
+            if (projectKeys.includes(defaultProject.id)) {
                 taskContainer.innerHTML = ''
                 const filtered = filterTaskArray(defaultProject.id)
                 let findTaskIndex = findProjectIndex(inboxArray, defaultProject.id)
@@ -68,4 +78,4 @@ function projectEventListener() {
     });
 }
 
-export {createProjectDom, createTaskDom, projectEventListener};
+export {createProjectDom, createTaskDom, projectEventListener, dateEventListener};
