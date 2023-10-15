@@ -2,7 +2,7 @@ import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, findProjectIndex, inboxArray, inboxObject } from '../script'
-import { filterDate, formatDate } from './date'
+import { filterDate, findDateIndex, formatDate } from './date'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -49,7 +49,12 @@ function projectEventListener() {
                 appendTasks()
             } else if (defaultProject.id === 'today') {
                 taskContainer.innerHTML = ''
-                console.log(filterDate(formatDate(new Date()), inboxArray))
+                const filteredToday = filterDate(formatDate(new Date()), inboxArray)
+                let findTodayIndex = findDateIndex(inboxArray, defaultProject.id)
+                for (let index = 0; index < filteredToday.length; index++) {
+                    const filteredTodayValue = Object.values(filteredToday[index])
+                    createTaskDom(findTodayIndex[index], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
+                }
             } else if (projectKeys.includes(defaultProject.id)) {
                 taskContainer.innerHTML = ''
                 const filtered = filterTaskArray(defaultProject.id)

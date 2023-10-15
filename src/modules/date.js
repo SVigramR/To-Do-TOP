@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, isToday, parseISO } from "date-fns";
 
 function formatDate(getDate) {
     return format(new Date(Date.parse(getDate)), 'LLL do yyyy')
@@ -10,4 +10,14 @@ function filterDate(date, arrayObject) {
     })
 }
 
-export { formatDate, filterDate }
+function findDateIndex(mainArray, projectName) {
+    let indexNumber = [];
+    if (projectName === 'today') {
+        let ind = mainArray.findIndex(item => { return item.dueDate === formatDate(new Date())})
+        indexNumber.push(ind.toString())
+    }
+
+    return indexNumber;
+}
+
+export { formatDate, filterDate, findDateIndex }
