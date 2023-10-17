@@ -1,4 +1,4 @@
-import { format, isToday, parseISO } from "date-fns";
+import { addDays, format, getDay, startOfWeek } from "date-fns";
 
 function formatDate(getDate) {
     return format(new Date(Date.parse(getDate)), 'LLL do yyyy')
@@ -20,4 +20,15 @@ function findDateIndex(mainArray, projectName) {
     return indexNumber;
 }
 
-export { formatDate, filterDate, findDateIndex }
+function evaluateWeekDays(weekDate) {
+    const day = getDay(weekDate)
+    const week = []
+    let weekStart = startOfWeek(weekDate);
+    for (let index = day; index < 7; index++) {
+        let loop = addDays(weekStart, index)
+        week.push(formatDate(loop))
+    }
+    return week
+}
+
+export { formatDate, filterDate, findDateIndex, evaluateWeekDays }

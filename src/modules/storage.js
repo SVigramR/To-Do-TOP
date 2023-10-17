@@ -1,9 +1,9 @@
-function getStorageValues {
+// function getStorageValues {
 
-}
+// }
 
-function getStorageKeys {
+// function getStorageKeys {
 
-}
+// }
 
-export {getStorageKeys, getStorageValues};
+// export {getStorageKeys, getStorageValues};

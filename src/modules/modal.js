@@ -1,8 +1,8 @@
 import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
-import { appendTasks, filterTaskArray, findProjectIndex, inboxArray, inboxObject } from '../script'
-import { filterDate, findDateIndex, formatDate } from './date'
+import { appendTasks, filterTaskArray, findProjectIndex, inboxArray } from '../script'
+import { evaluateWeekDays, filterDate, findDateIndex, formatDate } from './date'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -53,6 +53,22 @@ function dateEventListener() {
                     const filteredTodayValue = Object.values(filteredToday[index])
                     createTaskDom(findTodayIndex[index], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
                 }
+            } else if (defaultProject.id === 'week') {
+                taskContainer.innerHTML = ''
+                const filteredWeek = evaluateWeekDays(new Date())
+                for (let index = 0; index < filteredWeek.length; index++) {
+                    const weekDay = filterDate(filteredWeek[index], inboxArray)
+                    for (let jIndex = 0; jIndex < weekDay.length; jIndex++) {
+                        const filteredWeekValue = Object.values(weekDay[jIndex])
+                        createTaskDom(jIndex, filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
+                    }
+                }
+            } else if (defaultProject.id === 'upcoming') {
+                taskContainer.innerHTML = ''
+            } else if (defaultProject.id === 'pending') {
+                taskContainer.innerHTML = ''
+            } else if (defaultProject.id === 'completed') {
+                taskContainer.innerHTML = ''
             }
         });
     });
