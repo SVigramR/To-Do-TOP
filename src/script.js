@@ -2,18 +2,20 @@ import './style.css';
 import popupListener from './modules/popup.js';
 import createForms from './modules/forms';
 import { createProjectDom, createTaskDom, dateEventListener, projectEventListener } from './modules/modal';
-import { evaluateWeekDays, formatDate } from './modules/date';
-import { intlFormatDistance, isToday, parseISO } from 'date-fns';
+import { evaluateUpcomingDays, evaluateWeekDays, formatDate } from './modules/date';
+import { intlFormatDistance, isToday, parseISO, isAfter } from 'date-fns';
 
 console.log("Test Run")
 console.log(isToday(parseISO("Sep 13th 2023")))
 console.log(formatDate('2023-02-12'))
 console.log(intlFormatDistance( new Date(2023, 10, 19), Date.parse(new Date()), {unit: 'day'}))
 console.log(evaluateWeekDays(new Date()))
+console.log(isAfter(new Date(1989, 6, 10), new Date(1989, 6, 10)))
 export let inboxArray = []
 export let inboxObject = {
     inbox: inboxArray,
 }
+console.log(evaluateUpcomingDays(new Date(), inboxArray))
 
 function createObjectTask(title, description, dueDate, priority, project) {
     return {

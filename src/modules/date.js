@@ -31,4 +31,17 @@ function evaluateWeekDays(weekDate) {
     return week
 }
 
-export { formatDate, filterDate, findDateIndex, evaluateWeekDays }
+function evaluateUpcomingDays(date, array) {
+    // const nextWeekStart = formatDate(nextSunday(date))
+    let unique = []; 
+    array.forEach(element => { 
+        if (!unique.includes(element.dueDate)) { 
+                unique.push(element.dueDate);
+        } 
+    }); 
+    return unique; 
+    // return nextWeek
+    
+}
+
+export { formatDate, filterDate, findDateIndex, evaluateWeekDays, evaluateUpcomingDays }

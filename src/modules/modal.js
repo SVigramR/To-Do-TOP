@@ -2,7 +2,7 @@ import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, findProjectIndex, inboxArray } from '../script'
-import { evaluateWeekDays, filterDate, findDateIndex, formatDate } from './date'
+import { evaluateUpcomingDays, evaluateWeekDays, filterDate, findDateIndex, formatDate } from './date'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -65,6 +65,8 @@ function dateEventListener() {
                 }
             } else if (defaultProject.id === 'upcoming') {
                 taskContainer.innerHTML = ''
+                const filteredUpcoming = evaluateUpcomingDays(new Date(), inboxArray)
+                console.log(filteredUpcoming)
             } else if (defaultProject.id === 'pending') {
                 taskContainer.innerHTML = ''
             } else if (defaultProject.id === 'completed') {
