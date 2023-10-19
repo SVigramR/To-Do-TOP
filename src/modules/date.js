@@ -33,14 +33,13 @@ function evaluateWeekDays(weekDate) {
 
 function evaluateUpcomingDays(date, array) {
     // const nextWeekStart = formatDate(nextSunday(date))
-    let unique = []; 
-    array.forEach(element => { 
+    let unique = [];
+    array.forEach(element => {
         if (!unique.includes(element.dueDate)) { 
                 unique.push(element.dueDate);
         } 
     }); 
-    return unique; 
-    // return nextWeek
+    return unique.sort()
     
 }
 
