@@ -4,6 +4,7 @@ import createForms from './modules/forms';
 import { createProjectDom, createTaskDom, dateEventListener, projectEventListener } from './modules/modal';
 import { evaluateUpcomingDays, evaluateWeekDays, formatDate } from './modules/date';
 import { intlFormatDistance, isToday, parseISO, isAfter } from 'date-fns';
+import { retrieveStorage } from './modules/storage';
 
 console.log("Test Run")
 console.log(isToday(parseISO("Sep 13th 2023")))
@@ -35,7 +36,7 @@ export function filterTaskArray(projectValue) {
     return filteredInbox
 }
 
-function createProject(projectName) {
+export function createProject(projectName) {
     if (Object.keys(inboxObject) === projectName) {
         return console.log(`Project name (${projectName}) already exists`)
     } else {
@@ -85,27 +86,6 @@ myForm.addEventListener('submit', (event) => {
     myForm.reset();
     console.log('Add Button Clicked');
 })
-
-function retrieveStorage() {
-    if (localStorage.getItem('task') !== null) {
-        const getItem = JSON.parse(localStorage.getItem('task'))
-        const inbox = getItem.inbox
-        for (let index = 0; index < inbox.length; index++) { 
-            inboxArray.push(inbox[index])
-        }
-        const objectKeys = Object.keys(getItem)
-        for (let index = 1; index < objectKeys.length; index++) {
-            createProject(objectKeys[index])
-            const filterProject = filterTaskArray(objectKeys[index])
-            for (let j = 0; j < filterProject.length; j++) {
-                inboxObject[objectKeys[index]].push(filterProject[j]);
-            }
-            createProjectDom(objectKeys[index])
-        }
-        appendTasks()
-        console.log('Storage Retrival')
-    }
-}
 
 export function appendTasks() {
     for (let index = 0; index < inboxArray.length; index++) {
