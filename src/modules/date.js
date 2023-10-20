@@ -1,4 +1,4 @@
-import { addDays, format, getDay, startOfWeek } from "date-fns";
+import { addDays, format, getDay, isAfter, parseISO, nextSunday, startOfWeek, parse } from "date-fns";
 
 function formatDate(getDate) {
     return format(new Date(Date.parse(getDate)), 'LLL do yyyy')
@@ -31,7 +31,7 @@ function evaluateWeekDays(weekDate) {
     return week
 }
 
-function evaluateUpcomingDays(date, array) {
+function sortUpcomingDays(array) {
     // const nextWeekStart = formatDate(nextSunday(date))
     let unique = [];
     array.forEach(element => {
@@ -40,7 +40,10 @@ function evaluateUpcomingDays(date, array) {
         } 
     }); 
     return unique.sort()
-    
 }
 
-export { formatDate, filterDate, findDateIndex, evaluateWeekDays, evaluateUpcomingDays }
+function formatStringToDate(date) {
+    return parse(date, 'LLL do yyyy', new Date());
+}
+
+export { formatDate, filterDate, findDateIndex, evaluateWeekDays, sortUpcomingDays, formatStringToDate }
