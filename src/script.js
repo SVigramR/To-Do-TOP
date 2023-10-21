@@ -3,7 +3,7 @@ import popupListener from './modules/popup.js';
 import createForms from './modules/forms';
 import { createProjectDom, createTaskDom, dateEventListener, projectEventListener } from './modules/modal';
 import { evaluateUpcomingdays, evaluateWeekDays, formatDate, formatStringToDate } from './modules/date';
-import { intlFormatDistance, isToday, parseISO, isAfter } from 'date-fns';
+import { intlFormatDistance, isToday, parseISO, isAfter, isBefore } from 'date-fns';
 import { retrieveStorage } from './modules/storage';
 
 console.log("Test Run")
@@ -13,6 +13,7 @@ console.log(intlFormatDistance( new Date(2023, 10, 19), Date.parse(new Date()), 
 console.log(evaluateWeekDays(new Date()))
 console.log(isAfter(new Date(1989, 6, 10), new Date(1989, 6, 10)))
 console.log(formatStringToDate("Sep 13th 2023"))
+console.log(isBefore(new Date(2023, 10, 22), new Date(2023, 10, 22)))
 export let inboxArray = []
 export let inboxObject = {
     inbox: inboxArray,

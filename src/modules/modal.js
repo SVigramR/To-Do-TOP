@@ -2,7 +2,7 @@ import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, findProjectIndex, inboxArray } from '../script'
-import { evaluateUpcomingdays, evaluateWeekDays, filterDate, findDateIndex, formatDate } from './date'
+import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, findDateIndex, formatDate } from './date'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -72,11 +72,17 @@ function dateEventListener() {
                         const filteredUpcomingValue = Object.values(filteredUpcoming[jIndex])
                         createTaskDom(jIndex, filteredUpcomingValue[0], filteredUpcomingValue[2], filteredUpcomingValue[3])                       
                     }
-                    
                 }
-                console.log(sortedUpcoming)
             } else if (defaultProject.id === 'pending') {
                 taskContainer.innerHTML = ''
+                const sortedPending = evaluatePendingDays(new Date(), inboxArray)
+                for (let index = 0; index < sortedPending.length; index++) {
+                    const filteredPending = filterDate(sortedPending[index], inboxArray)
+                    for (let jIndex = 0; jIndex < filteredPending.length; jIndex++) {
+                        const filteredPendingValue = Object.values(filteredPending[jIndex])
+                        createTaskDom(jIndex, filteredPendingValue[0], filteredPendingValue[2], filteredPendingValue[3])                       
+                    }
+                }
             } else if (defaultProject.id === 'completed') {
                 taskContainer.innerHTML = ''
             }
