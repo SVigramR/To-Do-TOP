@@ -1,4 +1,4 @@
-import { addDays, format, getDay, isAfter, parseISO, nextSunday, startOfWeek, parse } from "date-fns";
+import { addDays, format, getDay, isAfter, nextSunday, startOfWeek, parse } from "date-fns";
 
 function formatDate(getDate) {
     return format(new Date(Date.parse(getDate)), 'LLL do yyyy')
@@ -31,19 +31,26 @@ function evaluateWeekDays(weekDate) {
     return week
 }
 
-function sortUpcomingDays(array) {
-    // const nextWeekStart = formatDate(nextSunday(date))
+function evaluateUpcomingdays(date, array) {
+    const nextWeekStart = formatDate(nextSunday(date))
     let unique = [];
+    let nextWeek = [];
     array.forEach(element => {
         if (!unique.includes(element.dueDate)) { 
                 unique.push(element.dueDate);
         } 
     }); 
-    return unique.sort()
+    unique.sort()
+    for (let index = 0; index < unique.length; index++) {
+        if (isAfter(formatStringToDate(unique[index]), formatStringToDate(nextWeekStart)) || unique[index] === nextWeekStart) {
+            nextWeek.push(unique[index])
+        }
+    }
+    return nextWeek;
 }
 
 function formatStringToDate(date) {
     return parse(date, 'LLL do yyyy', new Date());
 }
 
-export { formatDate, filterDate, findDateIndex, evaluateWeekDays, sortUpcomingDays, formatStringToDate }
+export { formatDate, filterDate, findDateIndex, evaluateWeekDays, evaluateUpcomingdays, formatStringToDate }

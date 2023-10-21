@@ -2,7 +2,7 @@ import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, findProjectIndex, inboxArray } from '../script'
-import { sortUpcomingDays, evaluateWeekDays, filterDate, findDateIndex, formatDate } from './date'
+import { evaluateUpcomingdays, evaluateWeekDays, filterDate, findDateIndex, formatDate } from './date'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -65,7 +65,15 @@ function dateEventListener() {
                 }
             } else if (defaultProject.id === 'upcoming') {
                 taskContainer.innerHTML = ''
-                const sortedUpcoming = sortUpcomingDays(inboxArray)
+                const sortedUpcoming = evaluateUpcomingdays(new Date(), inboxArray)
+                for (let index = 0; index < sortedUpcoming.length; index++) {
+                    const filteredUpcoming = filterDate(sortedUpcoming[index], inboxArray)
+                    for (let jIndex = 0; jIndex < filteredUpcoming.length; jIndex++) {
+                        const filteredUpcomingValue = Object.values(filteredUpcoming[jIndex])
+                        createTaskDom(jIndex, filteredUpcomingValue[0], filteredUpcomingValue[2], filteredUpcomingValue[3])                       
+                    }
+                    
+                }
                 console.log(sortedUpcoming)
             } else if (defaultProject.id === 'pending') {
                 taskContainer.innerHTML = ''

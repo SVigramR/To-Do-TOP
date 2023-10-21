@@ -2,7 +2,7 @@ import './style.css';
 import popupListener from './modules/popup.js';
 import createForms from './modules/forms';
 import { createProjectDom, createTaskDom, dateEventListener, projectEventListener } from './modules/modal';
-import { sortUpcomingDays, evaluateWeekDays, formatDate, formatStringToDate } from './modules/date';
+import { evaluateUpcomingdays, evaluateWeekDays, formatDate, formatStringToDate } from './modules/date';
 import { intlFormatDistance, isToday, parseISO, isAfter } from 'date-fns';
 import { retrieveStorage } from './modules/storage';
 
@@ -17,7 +17,7 @@ export let inboxArray = []
 export let inboxObject = {
     inbox: inboxArray,
 }
-console.log(sortUpcomingDays(inboxArray))
+console.log(evaluateUpcomingdays(new Date(), inboxArray))
 
 function createObjectTask(title, description, dueDate, priority, project) {
     return {
