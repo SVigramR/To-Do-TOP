@@ -10,11 +10,24 @@ function filterDate(date, arrayObject) {
     })
 }
 
-function findDateIndex(mainArray, projectName) {
+function findDateIndex(mainArray, projectName, dateArray) {
     let indexNumber = [];
     if (projectName === 'today') {
         let ind = mainArray.findIndex(item => { return item.dueDate === formatDate(new Date())})
         indexNumber.push(ind.toString())
+    } else if (projectName === 'week') {
+        for (let index = 0; index < dateArray.length; index++) {
+            let indexNum = []
+            let validateWeek = mainArray.find(item => item.dueDate === dateArray[index]);
+            console.log(validateWeek)
+            if (validateWeek) {
+                for (let jindex = 0; jindex < mainArray.length; jindex++) {
+                    let ind1 = mainArray.findIndex(item => { return item.dueDate === dateArray[index]})
+                    indexNum.push(ind1.toString())
+                }
+            }
+            indexNumber.push(indexNum)
+        }
     }
 
     return indexNumber;

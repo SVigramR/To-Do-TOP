@@ -56,11 +56,14 @@ function dateEventListener() {
             } else if (defaultProject.id === 'week') {
                 taskContainer.innerHTML = ''
                 const filteredWeek = evaluateWeekDays(new Date())
+                console.log(filteredWeek)
+                let findWeekIndex =  findDateIndex(inboxArray, defaultProject.id, filteredWeek)
+                console.log(findWeekIndex)
                 for (let index = 0; index < filteredWeek.length; index++) {
                     const weekDay = filterDate(filteredWeek[index], inboxArray)
                     for (let jIndex = 0; jIndex < weekDay.length; jIndex++) {
                         const filteredWeekValue = Object.values(weekDay[jIndex])
-                        createTaskDom(jIndex, filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
+                        createTaskDom(findWeekIndex[jIndex][index], filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
                     }
                 }
             } else if (defaultProject.id === 'upcoming') {
