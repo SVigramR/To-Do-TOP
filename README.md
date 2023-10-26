@@ -1,10 +1,8 @@
 # To-Do
 
-Repository README: To-Do App
-
 Welcome to the To-Do App repository! This application is a CRUD (Create, Read, Update, Delete) task management tool developed with vanilla JavaScript, HTML5, and CSS3. It leverages the Date-fns library for efficient date manipulation within task objects and integrates Local Storage to persist user-generated data even when the page is reloaded. The entire application is bundled using Webpack, and the JavaScript codebase is organized into ES6 modules, adhering to the principles of modularity and the single responsibility principle.
 
-Key Features:
+### Key Features:
 
 Create Tasks: Easily create new tasks, assigning them titles, descriptions, due dates, and priority levels.
 
@@ -21,3 +19,10 @@ Local Storage: Data created by the user is saved in the browser's Local Storage,
 Webpack Bundling: The application is bundled using Webpack, optimizing the performance and load times of your app.
 
 Modular Structure: The codebase follows the ES6 module structure, which promotes separation of concerns and the single responsibility principle. This makes the codebase more maintainable and scalable.
+
+### Usage:
+
+Create new tasks by clicking the "Add Task" button.
+Update task details by clicking the task and editing the fields.
+Delete tasks by clicking the "Delete" button on each task.
+Your tasks will be saved in Local Storage and will persist across page refreshes.
