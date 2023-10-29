@@ -2,7 +2,7 @@ import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, findProjectIndex, inboxArray } from '../script'
-import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, findDateIndex, formatDate } from './date'
+import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, findDateIndex, findWeekIndex, formatDate } from './date'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -57,13 +57,13 @@ function dateEventListener() {
                 taskContainer.innerHTML = ''
                 const filteredWeek = evaluateWeekDays(new Date())
                 console.log(filteredWeek)
-                let findWeekIndex =  findDateIndex(inboxArray, defaultProject.id, filteredWeek)
-                console.log(findWeekIndex)
+                let findWeekIndexArray = findWeekIndex(inboxArray, filteredWeek)
+                console.log(findWeekIndexArray)
                 for (let index = 0; index < filteredWeek.length; index++) {
                     const weekDay = filterDate(filteredWeek[index], inboxArray)
                     for (let jIndex = 0; jIndex < weekDay.length; jIndex++) {
                         const filteredWeekValue = Object.values(weekDay[jIndex])
-                        createTaskDom(findWeekIndex[jIndex][index], filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
+                        createTaskDom(jIndex, filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
                     }
                 }
             } else if (defaultProject.id === 'upcoming') {

@@ -10,27 +10,37 @@ function filterDate(date, arrayObject) {
     })
 }
 
-function findDateIndex(mainArray, projectName, dateArray) {
+function findDateIndex(mainArray, projectName) {
     let indexNumber = [];
     if (projectName === 'today') {
         let ind = mainArray.findIndex(item => { return item.dueDate === formatDate(new Date())})
         indexNumber.push(ind.toString())
-    } else if (projectName === 'week') {
-        for (let index = 0; index < dateArray.length; index++) {
-            let indexNum = []
-            let validateWeek = mainArray.find(item => item.dueDate === dateArray[index]);
-            console.log(validateWeek)
-            if (validateWeek) {
-                for (let jindex = 0; jindex < mainArray.length; jindex++) {
-                    let ind1 = mainArray.findIndex(item => { return item.dueDate === dateArray[index]})
-                    indexNum.push(ind1.toString())
-                }
-            }
-            indexNumber.push(indexNum)
-        }
-    }
+    } 
 
     return indexNumber;
+}
+
+function findWeekIndex(array, dateArray) {
+    let totalArray = []
+    let indexNumber = []
+    const totalArrayFunc = () => {    
+        array.forEach(element => {
+                totalArray.push(element.dueDate);
+        })
+    }
+    totalArrayFunc()
+    console.log(totalArray)
+    for (let index = 0; index < dateArray.length; index++) {
+        let numArray = []
+        totalArray.forEach((element, index) => {
+            if (element === dateArray[index]) {
+                numArray.push(ind)
+            }
+        });
+        indexNumber.push(numArray)
+    }
+    return indexNumber
+  
 }
 
 function evaluateWeekDays(weekDate) {
@@ -81,4 +91,4 @@ function formatStringToDate(date) {
     return parse(date, 'LLL do yyyy', new Date());
 }
 
-export { formatDate, filterDate, findDateIndex, evaluateWeekDays, evaluateUpcomingdays, evaluatePendingDays,formatStringToDate }
+export { formatDate, filterDate, findDateIndex, evaluateWeekDays, evaluateUpcomingdays, evaluatePendingDays,formatStringToDate, findWeekIndex }
