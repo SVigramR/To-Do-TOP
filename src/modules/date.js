@@ -32,15 +32,16 @@ function findWeekIndex(array, dateArray) {
     console.log(totalArray)
     for (let index = 0; index < dateArray.length; index++) {
         let numArray = []
-        totalArray.forEach((element, index) => {
+        totalArray.forEach((element, i) => {
             if (element === dateArray[index]) {
-                numArray.push(ind)
+                numArray.push(i)
             }
         });
-        indexNumber.push(numArray)
+        if (numArray !== []){
+            indexNumber.push(numArray)
+        }
     }
     return indexNumber
-  
 }
 
 function evaluateWeekDays(weekDate) {
