@@ -2,7 +2,7 @@ import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, findProjectIndex, inboxArray } from '../script'
-import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, findDateIndex, findWeekIndex, formatDate } from './date'
+import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, findTodayIndex, findWeekIndex, formatDate } from './date'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -48,7 +48,7 @@ function dateEventListener() {
             } else if (defaultProject.id === 'today') {
                 taskContainer.innerHTML = ''
                 const filteredToday = filterDate(formatDate(new Date()), inboxArray)
-                let findTodayIndex = findDateIndex(inboxArray, defaultProject.id)
+                let findTodayIndex = findTodayIndex(inboxArray, defaultProject.id)
                 for (let index = 0; index < filteredToday.length; index++) {
                     const filteredTodayValue = Object.values(filteredToday[index])
                     createTaskDom(findTodayIndex[index], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
@@ -69,11 +69,13 @@ function dateEventListener() {
             } else if (defaultProject.id === 'upcoming') {
                 taskContainer.innerHTML = ''
                 const sortedUpcoming = evaluateUpcomingdays(new Date(), inboxArray)
+                console.log("🚀 ~ file: modal.js:72 ~ defaultProject.addEventListener ~ sortedUpcoming:", sortedUpcoming)
+                let findUpcomingIndexArray = findWeekIndex(inboxArray, sortedUpcoming)
                 for (let index = 0; index < sortedUpcoming.length; index++) {
                     const filteredUpcoming = filterDate(sortedUpcoming[index], inboxArray)
                     for (let jIndex = 0; jIndex < filteredUpcoming.length; jIndex++) {
                         const filteredUpcomingValue = Object.values(filteredUpcoming[jIndex])
-                        createTaskDom(jIndex, filteredUpcomingValue[0], filteredUpcomingValue[2], filteredUpcomingValue[3])                       
+                        createTaskDom(findUpcomingIndexArray[index][jIndex], filteredUpcomingValue[0], filteredUpcomingValue[2], filteredUpcomingValue[3])                       
                     }
                 }
             } else if (defaultProject.id === 'pending') {

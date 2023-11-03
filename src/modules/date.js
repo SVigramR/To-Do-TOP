@@ -10,7 +10,7 @@ function filterDate(date, arrayObject) {
     })
 }
 
-function findDateIndex(mainArray, projectName) {
+function findTodayIndex(mainArray, projectName) {
     let indexNumber = [];
     if (projectName === 'today') {
         let ind = mainArray.findIndex(item => { return item.dueDate === formatDate(new Date())})
@@ -92,4 +92,4 @@ function formatStringToDate(date) {
     return parse(date, 'LLL do yyyy', new Date());
 }
 
-export { formatDate, filterDate, findDateIndex, evaluateWeekDays, evaluateUpcomingdays, evaluatePendingDays,formatStringToDate, findWeekIndex }
+export { formatDate, filterDate, findTodayIndex, evaluateWeekDays, evaluateUpcomingdays, evaluatePendingDays,formatStringToDate, findWeekIndex }
