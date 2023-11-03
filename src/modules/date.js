@@ -27,7 +27,7 @@ const totalArrayFunction = (array) => {
     return totalArrayFunc
 }
 
-function findWeekIndex(array, dateArray) {
+function findDateIndex(array, dateArray) {
     let indexNumber = []
     const totalArray = totalArrayFunction(array)
     for (let index = 0; index < dateArray.length; index++) {
@@ -92,4 +92,4 @@ function formatStringToDate(date) {
     return parse(date, 'LLL do yyyy', new Date());
 }
 
-export { formatDate, filterDate, findTodayIndex, evaluateWeekDays, evaluateUpcomingdays, evaluatePendingDays,formatStringToDate, findWeekIndex }
+export { formatDate, filterDate, findTodayIndex, evaluateWeekDays, evaluateUpcomingdays, evaluatePendingDays,formatStringToDate, findDateIndex }

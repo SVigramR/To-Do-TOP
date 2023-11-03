@@ -2,7 +2,7 @@ import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, findProjectIndex, inboxArray } from '../script'
-import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, findTodayIndex, findWeekIndex, formatDate } from './date'
+import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, findTodayIndex, findDateIndex, formatDate } from './date'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -57,20 +57,20 @@ function dateEventListener() {
                 taskContainer.innerHTML = ''
                 const filteredWeek = evaluateWeekDays(new Date())
                 console.log(filteredWeek)
-                let findWeekIndexArray = findWeekIndex(inboxArray, filteredWeek)
-                console.log(findWeekIndexArray)
+                let findDateIndexArray = findDateIndex(inboxArray, filteredWeek)
+                console.log(findDateIndexArray)
                 for (let index = 0; index < filteredWeek.length; index++) {
                     const weekDay = filterDate(filteredWeek[index], inboxArray)
                     for (let jIndex = 0; jIndex < weekDay.length; jIndex++) {
                         const filteredWeekValue = Object.values(weekDay[jIndex])
-                        createTaskDom(findWeekIndexArray[index][jIndex], filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
+                        createTaskDom(findDateIndexArray[index][jIndex], filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
                     }
                 }
             } else if (defaultProject.id === 'upcoming') {
                 taskContainer.innerHTML = ''
                 const sortedUpcoming = evaluateUpcomingdays(new Date(), inboxArray)
                 console.log("🚀 ~ file: modal.js:72 ~ defaultProject.addEventListener ~ sortedUpcoming:", sortedUpcoming)
-                let findUpcomingIndexArray = findWeekIndex(inboxArray, sortedUpcoming)
+                let findUpcomingIndexArray = findDateIndex(inboxArray, sortedUpcoming)
                 for (let index = 0; index < sortedUpcoming.length; index++) {
                     const filteredUpcoming = filterDate(sortedUpcoming[index], inboxArray)
                     for (let jIndex = 0; jIndex < filteredUpcoming.length; jIndex++) {
