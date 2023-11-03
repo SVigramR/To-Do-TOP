@@ -16,7 +16,6 @@ function findDateIndex(mainArray, projectName) {
         let ind = mainArray.findIndex(item => { return item.dueDate === formatDate(new Date())})
         indexNumber.push(ind.toString())
     } 
-
     return indexNumber;
 }
 
@@ -29,7 +28,6 @@ function findWeekIndex(array, dateArray) {
         })
     }
     totalArrayFunc()
-    console.log(totalArray)
     for (let index = 0; index < dateArray.length; index++) {
         let numArray = []
         totalArray.forEach((element, i) => {

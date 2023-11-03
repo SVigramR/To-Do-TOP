@@ -63,7 +63,7 @@ function dateEventListener() {
                     const weekDay = filterDate(filteredWeek[index], inboxArray)
                     for (let jIndex = 0; jIndex < weekDay.length; jIndex++) {
                         const filteredWeekValue = Object.values(weekDay[jIndex])
-                        createTaskDom(jIndex, filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
+                        createTaskDom(findWeekIndexArray[index][jIndex], filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
                     }
                 }
             } else if (defaultProject.id === 'upcoming') {
