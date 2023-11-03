@@ -69,7 +69,6 @@ function dateEventListener() {
             } else if (defaultProject.id === 'upcoming') {
                 taskContainer.innerHTML = ''
                 const sortedUpcoming = evaluateUpcomingdays(new Date(), inboxArray)
-                console.log("🚀 ~ file: modal.js:72 ~ defaultProject.addEventListener ~ sortedUpcoming:", sortedUpcoming)
                 let findUpcomingIndexArray = findDateIndex(inboxArray, sortedUpcoming)
                 for (let index = 0; index < sortedUpcoming.length; index++) {
                     const filteredUpcoming = filterDate(sortedUpcoming[index], inboxArray)
@@ -81,11 +80,12 @@ function dateEventListener() {
             } else if (defaultProject.id === 'pending') {
                 taskContainer.innerHTML = ''
                 const sortedPending = evaluatePendingDays(new Date(), inboxArray)
+                let findPendingIndexArray = findDateIndex(inboxArray, sortedPending)
                 for (let index = 0; index < sortedPending.length; index++) {
                     const filteredPending = filterDate(sortedPending[index], inboxArray)
                     for (let jIndex = 0; jIndex < filteredPending.length; jIndex++) {
                         const filteredPendingValue = Object.values(filteredPending[jIndex])
-                        createTaskDom(jIndex, filteredPendingValue[0], filteredPendingValue[2], filteredPendingValue[3])                       
+                        createTaskDom(findPendingIndexArray[index][jIndex], filteredPendingValue[0], filteredPendingValue[2], filteredPendingValue[3])                       
                     }
                 }
             } else if (defaultProject.id === 'completed') {
