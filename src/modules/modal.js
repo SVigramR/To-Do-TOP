@@ -48,10 +48,10 @@ function dateEventListener() {
             } else if (defaultProject.id === 'today') {
                 taskContainer.innerHTML = ''
                 const filteredToday = filterDate(formatDate(new Date()), inboxArray)
-                let findTodayIndex = findTodayIndex(inboxArray, defaultProject.id)
+                let findTodayIndexFunc = findTodayIndex(inboxArray, defaultProject.id)
                 for (let index = 0; index < filteredToday.length; index++) {
                     const filteredTodayValue = Object.values(filteredToday[index])
-                    createTaskDom(findTodayIndex[index], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
+                    createTaskDom(findTodayIndexFunc[index], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
                 }
             } else if (defaultProject.id === 'week') {
                 taskContainer.innerHTML = ''
