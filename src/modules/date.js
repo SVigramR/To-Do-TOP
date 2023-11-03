@@ -19,15 +19,17 @@ function findDateIndex(mainArray, projectName) {
     return indexNumber;
 }
 
+const totalArrayFunction = (array) => {  
+    let totalArrayFunc = [] 
+    array.forEach(element => {
+            totalArrayFunc.push(element.dueDate);
+    })
+    return totalArrayFunc
+}
+
 function findWeekIndex(array, dateArray) {
-    let totalArray = []
     let indexNumber = []
-    const totalArrayFunc = () => {    
-        array.forEach(element => {
-                totalArray.push(element.dueDate);
-        })
-    }
-    totalArrayFunc()
+    const totalArray = totalArrayFunction(array)
     for (let index = 0; index < dateArray.length; index++) {
         let numArray = []
         totalArray.forEach((element, i) => {
