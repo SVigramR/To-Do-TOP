@@ -46,14 +46,6 @@ export function createProject(projectName) {
     }
 }
 
-function updateProject(updateProjectArray) {
-    let updater = filterTaskArray(updateProjectArray)
-    for (let index = 1; index < updater.length; index++) {
-        const element = updater[index]
-        inboxObject[updateProjectArray].push(element)
-    }
-}
-
 export function findProjectIndex(mainArray, project) {
     let indexNumber = [];
     mainArray.forEach((element, index) => {
