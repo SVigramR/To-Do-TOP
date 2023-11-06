@@ -1,4 +1,4 @@
-import { createProject, appendTasks, inboxArray, inboxObject } from "../script"
+import { createProject, appendTasks, filterTaskArray, inboxArray, inboxObject } from "../script"
 import { createProjectDom } from "./modal"
 
 function retrieveStorage() {
