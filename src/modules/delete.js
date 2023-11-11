@@ -25,11 +25,17 @@ function refreshIndex() {
                     task.setAttribute('id', index)
                     index++          
                 });
-            } // else if (defaultProject.id === 'today') {
-            //     const today = filterDate(formatDate(new Date()), inboxArray)
-            //     let findTodayIndexFunc = findTodayIndex(inboxArray, defaultProject.id)
-
-            // } // else if (defaultProject.id === 'week') {
+            } else if (defaultProject.id === 'today') {
+                let index = 0;
+                let findTodayIndexFunc = findTodayIndex(inboxArray, defaultProject.id)
+                let today = () => {
+                    return findTodayIndexFunc[index]
+                }
+                taskDiv.forEach(task => {
+                    task.setAttribute('id', today())
+                    index++;
+                });
+            } // else if (defaultProject.id === 'week') {
             //     for (let index = 0; index < filteredWeek.length; index++) {
             //         for (let jIndex = 0; jIndex < weekDay.length; jIndex++) {
             //         }
