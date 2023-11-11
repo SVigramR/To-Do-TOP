@@ -12,9 +12,13 @@ function filterDate(date, arrayObject) {
 
 function findTodayIndex(mainArray, projectName) {
     let indexNumber = [];
+    const totalArray = totalArrayFunction(mainArray)
     if (projectName === 'today') {
-        let ind = mainArray.findIndex(item => { return item.dueDate === formatDate(new Date())})
-        indexNumber.push(ind.toString())
+        totalArray.forEach((element, i) => {
+            if (element === formatDate(new Date())) {
+                indexNumber.push(i)    
+            }
+        })
     } 
     return indexNumber;
 }
