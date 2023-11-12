@@ -66,9 +66,10 @@ myForm.addEventListener('submit', (event) => {
         let dateInput = document.getElementById('fdate').value
         let priorityInput = document.getElementById('fpriority').value
         let projectInput = document.getElementById('fproject').value
-    
+        
         addTask(titleInput, descriptionInput, formatDate(dateInput), priorityInput, projectInput, uniqueId())
-        createTaskDom(inboxArray.length.toString(), titleInput, formatDate(dateInput), priorityInput)
+        const last = inboxArray[inboxArray.length - 1]
+        createTaskDom(last.id, titleInput, formatDate(dateInput), priorityInput)
         localStorage.setItem('task', JSON.stringify(inboxObject))
     } else if (document.getElementById('formProject') !== null) {
         let addProjectInput = document.getElementById('formProject').value
@@ -84,7 +85,7 @@ myForm.addEventListener('submit', (event) => {
 export function appendTasks() {
     for (let index = 0; index < inboxArray.length; index++) {
         const objectValue = Object.values(inboxArray[index])
-        createTaskDom(index.toString(), objectValue[0], objectValue[2], objectValue[3])
+        createTaskDom(objectValue[6], objectValue[0], objectValue[2], objectValue[3])
     }
 }
 
