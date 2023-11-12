@@ -117,6 +117,7 @@ function projectEventListener() {
                     const filteredValue = Object.values(filtered[index])
                     createTaskDom(findTaskIndex[index], filteredValue[0], filteredValue[2], filteredValue[3])  
                 }
+                deleteDefaultTask()
             }
         });
     });

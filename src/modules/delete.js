@@ -1,4 +1,4 @@
-import { inboxArray } from "../script"
+import { inboxArray, findProjectIndex, filterTaskArray } from "../script"
 import { findDateIndex, findTodayIndex, evaluateWeekDays, evaluateUpcomingdays, evaluatePendingDays } from "./date"
 
 function deleteDefaultTask() {
@@ -11,6 +11,7 @@ function deleteDefaultTask() {
             e.target.parentElement.remove()
             console.log(inboxArray)
             refreshDefaultIndex()
+            refreshProjectIndex()
         })
     })
 }
@@ -75,6 +76,23 @@ function refreshDefaultIndex() {
             } // else if (defaultProject.id === 'completed') {
             // }
     }); 
+}
+
+function refreshProjectIndex() {
+    const defaultProjectDiv = document.querySelectorAll('.project-list')
+    const taskDiv = document.querySelectorAll('.task-div')
+    const getItem = JSON.parse(localStorage.getItem('task'))
+    const projectKeys = Object.keys(getItem)
+    defaultProjectDiv.forEach(defaultProject => {
+        if (projectKeys.includes(defaultProject.id)) {
+            let index = 0
+            let findTaskIndex = findProjectIndex(inboxArray, defaultProject.id)
+            taskDiv.forEach(task => {
+                task.setAttribute('id', findTaskIndex[index])
+                index++;
+            });
+        }
+    });
 }
 
 export { deleteDefaultTask }
