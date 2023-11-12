@@ -12,7 +12,7 @@ export let inboxObject = {
     inbox: inboxArray,
 }
 
-function createObjectTask(title, description, dueDate, priority, project) {
+function createObjectTask(title, description, dueDate, priority, project, uniqueId) {
     return {
         title: title,
         description: description,
@@ -20,7 +20,15 @@ function createObjectTask(title, description, dueDate, priority, project) {
         priority: priority,
         project: project,
         checked: false,
+        id: uniqueId,
     }
+}
+
+function uniqueId() {
+    return String(
+        Date.now().toString(32) +
+          Math.random().toString(16)
+      ).replace(/\./g, '')
 }
 
 export function filterTaskArray(projectValue) {
@@ -59,7 +67,7 @@ myForm.addEventListener('submit', (event) => {
         let priorityInput = document.getElementById('fpriority').value
         let projectInput = document.getElementById('fproject').value
     
-        addTask(titleInput, descriptionInput, formatDate(dateInput), priorityInput, projectInput)
+        addTask(titleInput, descriptionInput, formatDate(dateInput), priorityInput, projectInput, uniqueId())
         createTaskDom(inboxArray.length.toString(), titleInput, formatDate(dateInput), priorityInput)
         localStorage.setItem('task', JSON.stringify(inboxObject))
     } else if (document.getElementById('formProject') !== null) {
@@ -80,8 +88,8 @@ export function appendTasks() {
     }
 }
 
-function addTask(title, description, dueDate, priority, project) {
-    let todos = createObjectTask(title, description, dueDate, priority, project)
+function addTask(title, description, dueDate, priority, project, uniqueId) {
+    let todos = createObjectTask(title, description, dueDate, priority, project, uniqueId)
     inboxArray.push(todos)
     if (project !== 'inbox') inboxObject[project].push(todos);
 }
