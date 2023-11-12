@@ -3,7 +3,7 @@ import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, findProjectIndex, inboxArray } from '../script'
 import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, findTodayIndex, findDateIndex, formatDate } from './date'
-import { deleteFunction, getIndex } from './delete'
+import { deleteDefaultTask, getIndex } from './delete'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -47,7 +47,7 @@ function dateEventListener() {
             if (defaultProject.id === 'inbox') {
                 taskContainer.innerHTML = ''
                 appendTasks()
-                deleteFunction() 
+                deleteDefaultTask() 
             } else if (defaultProject.id === 'today') {
                 taskContainer.innerHTML = ''
                 const filteredToday = filterDate(formatDate(new Date()), inboxArray)
@@ -56,7 +56,7 @@ function dateEventListener() {
                     const filteredTodayValue = Object.values(filteredToday[index])
                     createTaskDom(findTodayIndexFunc[index], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
                 }
-                deleteFunction() 
+                deleteDefaultTask() 
             } else if (defaultProject.id === 'week') {
                 taskContainer.innerHTML = ''
                 const filteredWeek = evaluateWeekDays(new Date())
@@ -70,7 +70,7 @@ function dateEventListener() {
                         createTaskDom(findDateIndexArray[index][jIndex], filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
                     }
                 }
-                deleteFunction()
+                deleteDefaultTask()
             } else if (defaultProject.id === 'upcoming') {
                 taskContainer.innerHTML = ''
                 const sortedUpcoming = evaluateUpcomingdays(new Date(), inboxArray)
@@ -82,7 +82,7 @@ function dateEventListener() {
                         createTaskDom(findUpcomingIndexArray[index][jIndex], filteredUpcomingValue[0], filteredUpcomingValue[2], filteredUpcomingValue[3])                       
                     }
                 }
-                deleteFunction() 
+                deleteDefaultTask() 
             } else if (defaultProject.id === 'pending') {
                 taskContainer.innerHTML = ''
                 const sortedPending = evaluatePendingDays(new Date(), inboxArray)
@@ -94,7 +94,7 @@ function dateEventListener() {
                         createTaskDom(findPendingIndexArray[index][jIndex], filteredPendingValue[0], filteredPendingValue[2], filteredPendingValue[3])                       
                     }
                 }
-                deleteFunction() 
+                deleteDefaultTask() 
             } else if (defaultProject.id === 'completed') {
                 taskContainer.innerHTML = ''
             }

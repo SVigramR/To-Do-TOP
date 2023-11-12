@@ -4,7 +4,7 @@ import createForms from './modules/forms';
 import { createProjectDom, createTaskDom, dateEventListener, projectEventListener } from './modules/modal';
 import { formatDate } from './modules/date';
 import { retrieveStorage } from './modules/storage';
-import { deleteFunction} from './modules/delete';
+import { deleteDefaultTask} from './modules/delete';
 
 console.log("Test Run")
 export let inboxArray = []
@@ -98,5 +98,5 @@ init()
 window.onload = () => {
     retrieveStorage()
     projectEventListener()
-    deleteFunction()
+    deleteDefaultTask()
 } 

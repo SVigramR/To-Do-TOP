@@ -1,7 +1,7 @@
 import { inboxArray } from "../script"
 import { findDateIndex, findTodayIndex, evaluateWeekDays, evaluateUpcomingdays, evaluatePendingDays } from "./date"
 
-function deleteFunction() {
+function deleteDefaultTask() {
     const deleteTask = document.querySelectorAll('.delete')
     deleteTask.forEach(task => {
         task.addEventListener('click', (e) => {
@@ -77,4 +77,4 @@ function refreshIndex() {
     }); 
 }
 
-export { deleteFunction }
+export { deleteDefaultTask }
