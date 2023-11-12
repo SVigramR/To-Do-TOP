@@ -10,12 +10,12 @@ function deleteDefaultTask() {
             inboxArray.splice(taskId,1)
             e.target.parentElement.remove()
             console.log(inboxArray)
-            refreshIndex()
+            refreshDefaultIndex()
         })
     })
 }
 
-function refreshIndex() {
+function refreshDefaultIndex() {
     const defaultProjectDiv = document.querySelectorAll('.task-list')
     const taskDiv = document.querySelectorAll('.task-div')
     defaultProjectDiv.forEach(defaultProject => {
