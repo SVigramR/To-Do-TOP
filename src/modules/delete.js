@@ -11,7 +11,7 @@ function deleteDefaultTask() {
             e.target.parentElement.remove()
             console.log(inboxArray)
             refreshDefaultIndex()
-            refreshProjectIndex()
+            // refreshProjectIndex()
         })
     })
 }
@@ -20,15 +20,14 @@ function refreshDefaultIndex() {
     const defaultProjectDiv = document.querySelectorAll('.task-list')
     const taskDiv = document.querySelectorAll('.task-div')
     defaultProjectDiv.forEach(defaultProject => {
-            let index;
             if (defaultProject.id === 'inbox') {
-                index = 0;
+                let index = 0;
                 taskDiv.forEach(task => {
                     task.setAttribute('id', index)
                     index++          
                 });
             } else if (defaultProject.id === 'today') {
-                index = 0;
+                let index = 0;
                 let findTodayIndexFunc = findTodayIndex(inboxArray, defaultProject.id)
                 const today = () => {
                     return findTodayIndexFunc[index]
@@ -38,10 +37,12 @@ function refreshDefaultIndex() {
                     index++;
                 });
             } else if (defaultProject.id === 'week') {
-                index = 0;
+                let index = 0;
                 const filteredWeek = evaluateWeekDays(new Date())
                 const findWeekIndexFunc = findDateIndex(inboxArray, filteredWeek)
+                console.log(findWeekIndexFunc)
                 let weekIndex = findWeekIndexFunc.filter(array => array.length > 0).flat()
+                console.log(weekIndex)
                 const week = () => {
                     return weekIndex[index]
                 }
@@ -50,7 +51,7 @@ function refreshDefaultIndex() {
                     index++;
                 });
             } else if (defaultProject.id === 'upcoming') {
-                index = 0;
+                let index = 0;
                 const sortedUpcoming = evaluateUpcomingdays(new Date(), inboxArray)
                 const findUpcomingIndexFunc = findDateIndex(inboxArray, sortedUpcoming)
                 let upcomingIndex = findUpcomingIndexFunc.flat()
@@ -62,15 +63,15 @@ function refreshDefaultIndex() {
                     index++;
                 });
             } else if (defaultProject.id === 'pending') {
-                index = 0;
+                let index = 0;
                 const sortedPending = evaluatePendingDays(new Date(), inboxArray)
                 const findPendingIndexFunc = findDateIndex(inboxArray, sortedPending)
                 let pendingIndex = findPendingIndexFunc.flat()
-                const upcoming = () => {
+                const pending= () => {
                     return pendingIndex[index]
                 }
                 taskDiv.forEach(task => {
-                    task.setAttribute('id', upcoming())
+                    task.setAttribute('id', pending())
                     index++;
                 });
             } // else if (defaultProject.id === 'completed') {
