@@ -39,6 +39,15 @@ function createTaskDom(index, title, date, priority) {
     taskContainer.appendChild(taskDiv)
 }
 
+function createDeleteProject(projectName) {
+    const taskContainer = document.getElementById('task-container')
+    const taskBtn = document.createElement('button')
+    taskBtn.textContent = 'Delete Project'
+    taskBtn.setAttribute('id', projectName)
+    taskBtn.setAttribute('class', 'deleteProject')
+    taskContainer.appendChild(taskBtn)
+}
+
 function dateEventListener() {
     const defaultProjectDiv = document.querySelectorAll('.task-list')
     const taskContainer = document.getElementById('task-container')
@@ -107,9 +116,13 @@ function projectEventListener() {
             if (projectKeys.includes(defaultProject.id)) {
                 taskContainer.innerHTML = ''
                 const filtered = filterTaskArray(defaultProject.id)
-                for (let index = 0; index < filtered.length; index++) {
-                    const filteredValue = Object.values(filtered[index])
-                    createTaskDom(filteredValue[6], filteredValue[0], filteredValue[2], filteredValue[3])  
+                if (!filtered.length) {
+                    createDeleteProject(defaultProject.id);
+                } else {
+                    for (let index = 0; index < filtered.length; index++) {
+                        const filteredValue = Object.values(filtered[index])
+                        createTaskDom(filteredValue[6], filteredValue[0], filteredValue[2], filteredValue[3])  
+                    }
                 }
                 deleteTask()
             }
