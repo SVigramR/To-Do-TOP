@@ -3,7 +3,7 @@ import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, inboxArray } from '../script'
 import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, formatDate } from './date'
-import { deleteDefaultTask } from './delete'
+import { deleteTask } from './delete'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -47,7 +47,7 @@ function dateEventListener() {
             if (defaultProject.id === 'inbox') {
                 taskContainer.innerHTML = ''
                 appendTasks()
-                deleteDefaultTask() 
+                deleteTask() 
             } else if (defaultProject.id === 'today') {
                 taskContainer.innerHTML = ''
                 const filteredToday = filterDate(formatDate(new Date()), inboxArray)
@@ -55,7 +55,7 @@ function dateEventListener() {
                     const filteredTodayValue = Object.values(filteredToday[index])
                     createTaskDom(filteredTodayValue[6], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
                 }
-                deleteDefaultTask() 
+                deleteTask() 
             } else if (defaultProject.id === 'week') {
                 taskContainer.innerHTML = ''
                 const filteredWeek = evaluateWeekDays(new Date())
@@ -67,7 +67,7 @@ function dateEventListener() {
                         createTaskDom(filteredWeekValue[6], filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
                     }
                 }
-                deleteDefaultTask()
+                deleteTask()
             } else if (defaultProject.id === 'upcoming') {
                 taskContainer.innerHTML = ''
                 const sortedUpcoming = evaluateUpcomingdays(new Date(), inboxArray)
@@ -78,7 +78,7 @@ function dateEventListener() {
                         createTaskDom(filteredUpcomingValue[6], filteredUpcomingValue[0], filteredUpcomingValue[2], filteredUpcomingValue[3])                       
                     }
                 }
-                deleteDefaultTask() 
+                deleteTask() 
             } else if (defaultProject.id === 'pending') {
                 taskContainer.innerHTML = ''
                 const sortedPending = evaluatePendingDays(new Date(), inboxArray)
@@ -89,7 +89,7 @@ function dateEventListener() {
                         createTaskDom(filteredPendingValue[6], filteredPendingValue[0], filteredPendingValue[2], filteredPendingValue[3])                       
                     }
                 }
-                deleteDefaultTask() 
+                deleteTask() 
             } else if (defaultProject.id === 'completed') {
                 taskContainer.innerHTML = ''
             }
@@ -111,7 +111,7 @@ function projectEventListener() {
                     const filteredValue = Object.values(filtered[index])
                     createTaskDom(filteredValue[6], filteredValue[0], filteredValue[2], filteredValue[3])  
                 }
-                deleteDefaultTask()
+                deleteTask()
             }
         });
     });
