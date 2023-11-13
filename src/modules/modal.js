@@ -1,9 +1,9 @@
 import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
-import { appendTasks, filterTaskArray, findProjectIndex, inboxArray } from '../script'
-import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, findTodayIndex, findDateIndex, formatDate } from './date'
-import { deleteDefaultTask, getIndex } from './delete'
+import { appendTasks, filterTaskArray, inboxArray } from '../script'
+import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, formatDate } from './date'
+import { deleteDefaultTask } from './delete'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -51,47 +51,42 @@ function dateEventListener() {
             } else if (defaultProject.id === 'today') {
                 taskContainer.innerHTML = ''
                 const filteredToday = filterDate(formatDate(new Date()), inboxArray)
-                let findTodayIndexFunc = findTodayIndex(inboxArray, defaultProject.id)
                 for (let index = 0; index < filteredToday.length; index++) {
                     const filteredTodayValue = Object.values(filteredToday[index])
-                    createTaskDom(findTodayIndexFunc[index], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
+                    createTaskDom(filteredTodayValue[6], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
                 }
                 deleteDefaultTask() 
             } else if (defaultProject.id === 'week') {
                 taskContainer.innerHTML = ''
                 const filteredWeek = evaluateWeekDays(new Date())
                 console.log(filteredWeek)
-                let findDateIndexArray = findDateIndex(inboxArray, filteredWeek)
-                console.log(findDateIndexArray)
                 for (let index = 0; index < filteredWeek.length; index++) {
                     const weekDay = filterDate(filteredWeek[index], inboxArray)
                     for (let jIndex = 0; jIndex < weekDay.length; jIndex++) {
                         const filteredWeekValue = Object.values(weekDay[jIndex])
-                        createTaskDom(findDateIndexArray[index][jIndex], filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
+                        createTaskDom(filteredWeekValue[6], filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
                     }
                 }
                 deleteDefaultTask()
             } else if (defaultProject.id === 'upcoming') {
                 taskContainer.innerHTML = ''
                 const sortedUpcoming = evaluateUpcomingdays(new Date(), inboxArray)
-                let findUpcomingIndexArray = findDateIndex(inboxArray, sortedUpcoming)
                 for (let index = 0; index < sortedUpcoming.length; index++) {
                     const filteredUpcoming = filterDate(sortedUpcoming[index], inboxArray)
                     for (let jIndex = 0; jIndex < filteredUpcoming.length; jIndex++) {
                         const filteredUpcomingValue = Object.values(filteredUpcoming[jIndex])
-                        createTaskDom(findUpcomingIndexArray[index][jIndex], filteredUpcomingValue[0], filteredUpcomingValue[2], filteredUpcomingValue[3])                       
+                        createTaskDom(filteredUpcomingValue[6], filteredUpcomingValue[0], filteredUpcomingValue[2], filteredUpcomingValue[3])                       
                     }
                 }
                 deleteDefaultTask() 
             } else if (defaultProject.id === 'pending') {
                 taskContainer.innerHTML = ''
                 const sortedPending = evaluatePendingDays(new Date(), inboxArray)
-                let findPendingIndexArray = findDateIndex(inboxArray, sortedPending)
                 for (let index = 0; index < sortedPending.length; index++) {
                     const filteredPending = filterDate(sortedPending[index], inboxArray)
                     for (let jIndex = 0; jIndex < filteredPending.length; jIndex++) {
                         const filteredPendingValue = Object.values(filteredPending[jIndex])
-                        createTaskDom(findPendingIndexArray[index][jIndex], filteredPendingValue[0], filteredPendingValue[2], filteredPendingValue[3])                       
+                        createTaskDom(filteredPendingValue[6], filteredPendingValue[0], filteredPendingValue[2], filteredPendingValue[3])                       
                     }
                 }
                 deleteDefaultTask() 
@@ -112,10 +107,9 @@ function projectEventListener() {
             if (projectKeys.includes(defaultProject.id)) {
                 taskContainer.innerHTML = ''
                 const filtered = filterTaskArray(defaultProject.id)
-                let findTaskIndex = findProjectIndex(inboxArray, defaultProject.id)
                 for (let index = 0; index < filtered.length; index++) {
                     const filteredValue = Object.values(filtered[index])
-                    createTaskDom(findTaskIndex[index], filteredValue[0], filteredValue[2], filteredValue[3])  
+                    createTaskDom(filteredValue[6], filteredValue[0], filteredValue[2], filteredValue[3])  
                 }
                 deleteDefaultTask()
             }

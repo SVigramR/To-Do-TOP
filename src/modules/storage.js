@@ -22,5 +22,4 @@ function retrieveStorage() {
     }
 }
 
-// export {getStorageKeys, getStorageValues};
 export { retrieveStorage };

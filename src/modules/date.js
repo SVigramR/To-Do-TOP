@@ -10,44 +10,6 @@ function filterDate(date, arrayObject) {
     })
 }
 
-function findTodayIndex(mainArray, projectName) {
-    let indexNumber = [];
-    const totalArray = totalArrayFunction(mainArray)
-    if (projectName === 'today') {
-        totalArray.forEach((element, i) => {
-            if (element === formatDate(new Date())) {
-                indexNumber.push(i)    
-            }
-        })
-    } 
-    return indexNumber;
-}
-
-const totalArrayFunction = (array) => {  
-    let totalArrayFunc = [] 
-    array.forEach(element => {
-            totalArrayFunc.push(element.dueDate);
-    })
-    return totalArrayFunc
-}
-
-function findDateIndex(array, dateArray) {
-    let indexNumber = []
-    const totalArray = totalArrayFunction(array)
-    for (let index = 0; index < dateArray.length; index++) {
-        let numArray = []
-        totalArray.forEach((element, i) => {
-            if (element === dateArray[index]) {
-                numArray.push(i)
-            }
-        });
-        if (numArray !== []){
-            indexNumber.push(numArray)
-        }
-    }
-    return indexNumber
-}
-
 function evaluateWeekDays(weekDate) {
     const day = getDay(weekDate)
     const week = []
@@ -96,4 +58,4 @@ function formatStringToDate(date) {
     return parse(date, 'LLL do yyyy', new Date());
 }
 
-export { formatDate, filterDate, findTodayIndex, evaluateWeekDays, evaluateUpcomingdays, evaluatePendingDays,formatStringToDate, findDateIndex }
+export { formatDate, filterDate, evaluateWeekDays, evaluateUpcomingdays, evaluatePendingDays,formatStringToDate }
