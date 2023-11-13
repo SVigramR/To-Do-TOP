@@ -100,6 +100,8 @@ li {
     grid-row: 2/3;
     grid-column: 2/3;
     gap: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .task-div {
@@ -132,6 +134,18 @@ li {
 
 .low {
     background-color: #79ff74;
+}
+
+.deleteProject {
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 2rem;
+    color: #ffffff;
+    font-weight: 900;
+    background: linear-gradient(to right, #f56f0e, #3622af);
+    margin-top: 4rem;
+    margin-left: 5rem;
 }
 
 /* Popups */
