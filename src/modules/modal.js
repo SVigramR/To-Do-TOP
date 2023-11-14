@@ -3,7 +3,7 @@ import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, inboxArray } from '../script'
 import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, formatDate } from './date'
-import { deleteTask } from './delete'
+import { deleteProject, deleteTask } from './delete'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -43,7 +43,7 @@ function createDeleteProject(projectName) {
     const taskContainer = document.getElementById('task-container')
     const taskBtn = document.createElement('button')
     taskBtn.textContent = 'Delete Project'
-    taskBtn.setAttribute('id', projectName)
+    // taskBtn.setAttribute('id', projectName)
     taskBtn.setAttribute('class', 'deleteProject')
     taskContainer.appendChild(taskBtn)
 }
@@ -118,6 +118,7 @@ function projectEventListener() {
                 const filtered = filterTaskArray(defaultProject.id)
                 if (!filtered.length) {
                     createDeleteProject(defaultProject.id);
+                    deleteProject(defaultProject.id)
                 } else {
                     for (let index = 0; index < filtered.length; index++) {
                         const filteredValue = Object.values(filtered[index])
@@ -130,4 +131,4 @@ function projectEventListener() {
     });
 }
 
-export {createProjectDom, createTaskDom, projectEventListener, dateEventListener};
+export {createProjectDom, createTaskDom, createDeleteProject, projectEventListener, dateEventListener};

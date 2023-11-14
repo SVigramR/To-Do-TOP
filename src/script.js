@@ -1,10 +1,10 @@
 import './style.css';
 import popupListener from './modules/popup.js';
 import createForms from './modules/forms';
-import { createProjectDom, createTaskDom, dateEventListener, projectEventListener } from './modules/modal';
+import { createProjectDom, createTaskDom, createDeleteProject, dateEventListener, projectEventListener } from './modules/modal';
 import { formatDate } from './modules/date';
 import { retrieveStorage } from './modules/storage';
-import { deleteTask} from './modules/delete';
+import { deleteTask, deleteProject} from './modules/delete';
 
 console.log("Test Run")
 export let inboxArray = []
@@ -75,6 +75,12 @@ myForm.addEventListener('submit', (event) => {
         let addProjectInput = document.getElementById('formProject').value
         createProject(addProjectInput)
         createProjectDom(addProjectInput)
+        const filtered = filterTaskArray(addProjectInput)
+        if (!filtered.length) {
+            document.getElementById('task-container').textContent = ''
+            createDeleteProject(addProjectInput)
+            deleteProject(addProjectInput)
+        }
         localStorage.setItem('task', JSON.stringify(inboxObject))
     }
 
