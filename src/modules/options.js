@@ -13,8 +13,8 @@ function projectOption() {
 
 function projectRemoveOption() {
     const project = document.getElementById('fproject')
-    project.innerHTML = ''
-    project.innerHTML = `<option value="inbox">Inbox</option>`
+    project.textContent = ''
+    project.textContent = `<option value="inbox">Inbox</option>`
 }
 
 export {projectOption, projectRemoveOption};

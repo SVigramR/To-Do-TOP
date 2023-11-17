@@ -80,6 +80,7 @@ myForm.addEventListener('submit', (event) => {
             document.getElementById('task-container').textContent = ''
             createDeleteProject(addProjectInput)
             deleteProject(addProjectInput)
+            projectEventListener()
         }
         localStorage.setItem('task', JSON.stringify(inboxObject))
     }
