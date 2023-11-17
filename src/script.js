@@ -72,17 +72,22 @@ myForm.addEventListener('submit', (event) => {
         createTaskDom(last.id, titleInput, formatDate(dateInput), priorityInput)
         localStorage.setItem('task', JSON.stringify(inboxObject))
     } else if (document.getElementById('formProject') !== null) {
+        let objectKeyValidate = Object.keys(inboxObject)
         let addProjectInput = document.getElementById('formProject').value
-        createProject(addProjectInput)
-        createProjectDom(addProjectInput)
-        const filtered = filterTaskArray(addProjectInput)
-        if (!filtered.length) {
-            document.getElementById('task-container').textContent = ''
-            createDeleteProject(addProjectInput)
-            deleteProject(addProjectInput)
-            projectEventListener()
+        if (objectKeyValidate.includes(addProjectInput)) {
+            alert("This Project Name Already Exists")
+        } else {
+            createProject(addProjectInput)
+            createProjectDom(addProjectInput)
+            const filtered = filterTaskArray(addProjectInput)
+            if (!filtered.length) {
+                document.getElementById('task-container').textContent = ''
+                createDeleteProject(addProjectInput)
+                deleteProject(addProjectInput)
+                projectEventListener()
+            }
+            localStorage.setItem('task', JSON.stringify(inboxObject))
         }
-        localStorage.setItem('task', JSON.stringify(inboxObject))
     }
 
     myForm.reset();
