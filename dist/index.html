@@ -34,7 +34,34 @@
                 </select>
                 <label for="fproject">Project:</label>
                 <select id="fproject" name="project" required>
-                    <option value="inbox">Inbox</option>
+                </select> 
+                <button type="submit" id="addSubmit" class="addSubmit">Add Task</button>
+            </form>
+        </div>
+    </div>
+    <div class="updatePopup" id="updateTaskPopup">
+        <div data-background class="overlay" id="addTaskOverlay"></div>
+        <div class="form flex-column" id="addTaskForm">
+            <div class="addTaskHeader">
+                <h1 class="addFormTitle">Update Task</h1>
+                <div data-close class="addTaskClose">x</div>
+            </div>
+            <form class="form-1 flex-column" id="formTwo" action="">
+                <label for="utitle">Title:</label>
+                <input type="text" id="utitle" name="title" placeholder="Title" required>
+                <label for="udescription">Description:</label>
+                <input type="text" id="udescription" name="description" placeholder="Description">
+                <label for="udate">Date:</label>
+                <input type="date" id="udate" name="date">
+                <label for="upriority">Priority:</label>
+                <select id="upriority" name="priority" required>
+                    <option value="none">None</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <label for="uproject">Project:</label>
+                <select id="uproject" name="project" required>
                 </select> 
                 <button type="submit" id="addSubmit" class="addSubmit">Add Task</button>
             </form>

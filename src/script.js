@@ -5,6 +5,7 @@ import { createProjectDom, createTaskDom, createDeleteProject, dateEventListener
 import { formatDate } from './modules/date';
 import { retrieveStorage } from './modules/storage';
 import { deleteTask, deleteProject} from './modules/delete';
+import updatePopup from './modules/update';
 
 console.log("Test Run")
 export let inboxArray = []
@@ -112,6 +113,7 @@ function init() {
     createForms()
     dateEventListener()
     projectEventListener()
+    updatePopup()
 }
 
 init()
@@ -120,4 +122,5 @@ window.onload = () => {
     retrieveStorage()
     projectEventListener()
     deleteTask()
+    updatePopup()
 } 
