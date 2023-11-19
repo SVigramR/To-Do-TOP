@@ -2,16 +2,17 @@ import './style.css';
 import popupListener from './modules/popup.js';
 import createForms from './modules/forms';
 import { createProjectDom, createTaskDom, createDeleteProject, dateEventListener, projectEventListener } from './modules/modal';
-import { formatDate } from './modules/date';
+import { formatDate, formatStringToDate } from './modules/date';
 import { retrieveStorage } from './modules/storage';
 import { deleteTask, deleteProject} from './modules/delete';
-import updatePopup from './modules/update';
+import updateTask from './modules/update';
 
 console.log("Test Run")
 export let inboxArray = []
 export let inboxObject = {
     inbox: inboxArray,
 }
+console.log(formatStringToDate('Nov 24th 2023'))
 
 function createObjectTask(title, description, dueDate, priority, project, uniqueId) {
     return {
@@ -30,6 +31,14 @@ function uniqueId() {
         Date.now().toString(32) +
           Math.random().toString(16)
       ).replace(/\./g, '')
+}
+
+export function validateDate(date) {
+    if (date !== '') {
+        return formatDate(date);
+    } else {
+        return date;
+    }
 }
 
 export function filterTaskArray(projectValue) {
@@ -113,7 +122,7 @@ function init() {
     createForms()
     dateEventListener()
     projectEventListener()
-    updatePopup()
+    // updateTask()
 }
 
 init()
@@ -122,5 +131,5 @@ window.onload = () => {
     retrieveStorage()
     projectEventListener()
     deleteTask()
-    updatePopup()
+    updateTask()
 } 

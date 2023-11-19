@@ -4,7 +4,7 @@ import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, inboxArray } from '../script'
 import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, formatDate } from './date'
 import { deleteProject, deleteTask } from './delete'
-import updatePopup from './update'
+import updateTask from './update'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -59,7 +59,7 @@ function dateEventListener() {
                 taskContainer.innerHTML = ''
                 appendTasks()
                 deleteTask()
-                updatePopup()
+                updateTask()
             } else if (defaultProject.id === 'today') {
                 taskContainer.innerHTML = ''
                 const filteredToday = filterDate(formatDate(new Date()), inboxArray)
