@@ -1,4 +1,4 @@
-import reportIcon from '../Icons/report.png'
+// import reportIcon from '../Icons/report.png'
 import detailIcon from '../Icons/text-file.png'
 import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, inboxArray } from '../script'
@@ -28,8 +28,8 @@ function createTaskDom(index, title, date, priority) {
     const taskDate = document.createElement('p')
     taskDate.textContent = date
 
-    const changePriority = document.createElement('img')
-    changePriority.setAttribute('src', reportIcon)
+    // const changePriority = document.createElement('img')
+    // changePriority.setAttribute('src', reportIcon)
     const updateTask = document.createElement('img')
     updateTask.setAttribute('src', detailIcon)
     updateTask.setAttribute('class', 'update')
@@ -37,7 +37,7 @@ function createTaskDom(index, title, date, priority) {
     taskDelete.setAttribute('src', deleteIcon)
     taskDelete.setAttribute('class', 'delete')
     
-    taskDiv.append(checkBox, taskTitle, taskDate, changePriority, updateTask, taskDelete)
+    taskDiv.append(checkBox, taskTitle, taskDate, updateTask, taskDelete)
     taskContainer.appendChild(taskDiv)
 }
 
