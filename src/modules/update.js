@@ -1,5 +1,5 @@
 import { projectOption, projectRemoveOption } from "./options"
-import { inboxArray, validateDate } from "../script"
+import { inboxArray, inboxObject } from "../script"
 import { formatDate, formatStringToDate } from "./date"
 
 function updateTask() {
@@ -111,8 +111,10 @@ function updateTask() {
                 projectRemoveOption();
                 myForm.reset();
                 console.log('Update Button Clicked');
+                localStorage.clear()
+                localStorage.setItem('task', JSON.stringify(inboxObject))
                 document.getElementById("updateSubmit").disabled = false;
-        
+                
                 myForm.removeEventListener('submit', submitHandler);
             };
         

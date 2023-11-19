@@ -12,6 +12,8 @@ function deleteTask() {
             inboxArray.splice(taskId,1)
             e.target.parentElement.remove()
             console.log(inboxArray)
+            localStorage.clear()
+            localStorage.setItem('task', JSON.stringify(inboxObject))
         })
     })
 }
@@ -23,6 +25,7 @@ function deleteProject(project) {
         delete inboxObject[project]
         projectDiv.remove()
         deleteProject.remove()
+        localStorage.clear()
         localStorage.setItem('task', JSON.stringify(inboxObject))
         document.getElementById('inbox').click()
         let projectKeys = Object.keys(inboxObject)
