@@ -16,7 +16,7 @@ function updateTask() {
                 projectOption()
                 let taskId = e.target.parentElement.id
                 console.log(taskId) 
-                formUpdater(taskId) 
+                formUpdater(taskId)
                 submitUpdate(taskId)
             })
         })
@@ -60,7 +60,6 @@ function updateTask() {
                 const year = normalDate.getFullYear() + "-" + month + "-" + day;
                 return year
             }
-            console.log(dateUpdater(task.dueDate))
             
             let titleInput = document.getElementById('utitle')
             let descriptionInput = document.getElementById('udescription')
@@ -79,6 +78,7 @@ function updateTask() {
         
             const submitHandler = async (event) => {
                 event.preventDefault();
+                document.getElementById("updateSubmit").disabled = true;
         
                 let titleInput = document.getElementById('utitle').value;
                 let descriptionInput = document.getElementById('udescription').value;
@@ -108,7 +108,7 @@ function updateTask() {
                     console.log(Index);
                     inboxArray[Index] = task;
                     console.log(inboxArray);
-                    updateModal(taskId, task.title, validateDate(task.dueDate), task.priority)
+                    updateModal(taskId, task.title, task.dueDate, task.priority)
 
                 }
         
@@ -116,6 +116,7 @@ function updateTask() {
                 projectRemoveOption();
                 myForm.reset();
                 console.log('Update Button Clicked');
+                document.getElementById("updateSubmit").disabled = false;
         
                 myForm.removeEventListener('submit', submitHandler);
             };
@@ -144,7 +145,7 @@ function updateTask() {
             const taskDelete = document.createElement('img')
             taskDelete.setAttribute('src', deleteIcon)
             taskDelete.setAttribute('class', 'delete')
-
+        
             taskDiv.append(checkBox, taskTitle, taskDate, changePriority, updateTask, taskDelete)
         }
 
