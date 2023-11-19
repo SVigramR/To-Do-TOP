@@ -67,7 +67,8 @@ function dateEventListener() {
                     const filteredTodayValue = Object.values(filteredToday[index])
                     createTaskDom(filteredTodayValue[6], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
                 }
-                deleteTask() 
+                deleteTask()
+                updateTask()
             } else if (defaultProject.id === 'week') {
                 taskContainer.innerHTML = ''
                 const filteredWeek = evaluateWeekDays(new Date())
@@ -80,6 +81,7 @@ function dateEventListener() {
                     }
                 }
                 deleteTask()
+                updateTask()
             } else if (defaultProject.id === 'upcoming') {
                 taskContainer.innerHTML = ''
                 const sortedUpcoming = evaluateUpcomingdays(new Date(), inboxArray)
@@ -90,7 +92,8 @@ function dateEventListener() {
                         createTaskDom(filteredUpcomingValue[6], filteredUpcomingValue[0], filteredUpcomingValue[2], filteredUpcomingValue[3])                       
                     }
                 }
-                deleteTask() 
+                updateTask()
+                deleteTask()
             } else if (defaultProject.id === 'pending') {
                 taskContainer.innerHTML = ''
                 const sortedPending = evaluatePendingDays(new Date(), inboxArray)
@@ -102,6 +105,7 @@ function dateEventListener() {
                     }
                 }
                 deleteTask() 
+                updateTask()
             } else if (defaultProject.id === 'completed') {
                 taskContainer.innerHTML = ''
             }
@@ -129,6 +133,7 @@ function projectEventListener() {
                     }
                 }
                 deleteTask()
+                updateTask()
             }
         });
     });

@@ -31,7 +31,6 @@ function updateTask() {
                 projectRemoveOption()
             })
         })
-        console.log(identification)
 
         const taskObject = (taskId) => {
             let task
