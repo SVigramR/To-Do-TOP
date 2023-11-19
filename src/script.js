@@ -12,7 +12,6 @@ export let inboxArray = []
 export let inboxObject = {
     inbox: inboxArray,
 }
-console.log(formatStringToDate('Nov 24th 2023'))
 
 function createObjectTask(title, description, dueDate, priority, project, uniqueId) {
     return {
@@ -122,7 +121,6 @@ function init() {
     createForms()
     dateEventListener()
     projectEventListener()
-    // updateTask()
 }
 
 init()

@@ -1,21 +1,18 @@
 import { projectOption, projectRemoveOption } from "./options"
 import { inboxArray, validateDate } from "../script"
 import { formatDate, formatStringToDate } from "./date"
-import reportIcon from '../Icons/report.png'
-import detailIcon from '../Icons/text-file.png'
-import deleteIcon from '../Icons/delete.png'
 
 function updateTask() {
         const updateBtn = document.querySelectorAll('.update')
         const popupBackground = document.querySelectorAll('[data-background]')
         const popupClose = document.querySelectorAll('[data-close]')
-        let identification;
+        const myForm = document.getElementById('formTwo');
+
         updateBtn.forEach(update => {
             update.addEventListener('click', (e) => {
                 document.getElementById('updateTaskPopup').classList.add('active')                     
                 projectOption()
                 let taskId = e.target.parentElement.id
-                console.log(taskId) 
                 formUpdater(taskId)
                 submitUpdate(taskId)
             })
@@ -34,6 +31,7 @@ function updateTask() {
                 projectRemoveOption()
             })
         })
+        console.log(identification)
 
         const taskObject = (taskId) => {
             let task
@@ -74,7 +72,6 @@ function updateTask() {
         }
 
         const submitUpdate = (taskId) => {
-            const myForm = document.getElementById('formTwo');
         
             const submitHandler = async (event) => {
                 event.preventDefault();
@@ -103,13 +100,12 @@ function updateTask() {
                     task.project = projectInput;
         
                     console.table(task);
-        
+                    updateModal(taskId, task.title, task.dueDate, task.priority)
+    
                     let Index = taskIndex(taskId);
                     console.log(Index);
                     inboxArray[Index] = task;
                     console.log(inboxArray);
-                    updateModal(taskId, task.title, task.dueDate, task.priority)
-
                 }
         
                 document.getElementById('updateTaskPopup').classList.remove('active');
@@ -126,9 +122,9 @@ function updateTask() {
 
         const updateModal = (taskId, title, date, priority) => {
             const taskDiv = document.getElementById(taskId)
-            while (taskDiv.hasChildNodes()) {
+            for (let index = 0; index < 3; index++) {
                 taskDiv.removeChild(taskDiv.firstChild)
-            };
+            }
             taskDiv.classList.remove()
             taskDiv.classList.add('task-div', priority)
             const checkBox = document.createElement('input')
@@ -137,18 +133,9 @@ function updateTask() {
             taskTitle.textContent = title
             const taskDate = document.createElement('p')
             taskDate.textContent = date
-            const changePriority = document.createElement('img')
-            changePriority.setAttribute('src', reportIcon)
-            const updateTask = document.createElement('img')
-            updateTask.setAttribute('src', detailIcon)
-            updateTask.setAttribute('class', 'update')
-            const taskDelete = document.createElement('img')
-            taskDelete.setAttribute('src', deleteIcon)
-            taskDelete.setAttribute('class', 'delete')
         
-            taskDiv.append(checkBox, taskTitle, taskDate, changePriority, updateTask, taskDelete)
+            taskDiv.prepend(checkBox, taskTitle, taskDate )
         }
-
 }
 
 export default updateTask;
