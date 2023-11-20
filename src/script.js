@@ -80,6 +80,8 @@ myForm.addEventListener('submit', (event) => {
         const last = inboxArray[inboxArray.length - 1]
         createTaskDom(last.id, titleInput, formatDate(dateInput), priorityInput)
         localStorage.setItem('task', JSON.stringify(inboxObject))
+        deleteTask()
+        updateTask()
     } else if (document.getElementById('formProject') !== null) {
         let objectKeyValidate = Object.keys(inboxObject)
         let addProjectInput = document.getElementById('formProject').value

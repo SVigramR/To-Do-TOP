@@ -106,13 +106,73 @@ li {
 
 .task-div {
     height: 4rem;
+    padding: 1rem;
     width: auto;
     margin: 10px;
+    border-radius: 10px;
     background-color: #959a93;
+    color: whitesmoke;
+    font-weight: 900;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.task-div-one {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
+}
+
+.task-div-two {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.task-div input[type='checkbox'] {
+    height: 1.25rem;
+    width: 1.25rem;
+    background: #f1f5f9;
+    transition: background 250ms;
+    border: 1px solid #94a3b8;
+    border-radius: 0.2rem;  
+}
+
+.task-div input[type='checkbox']::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: 3px;
+    width: 0.3rem;
+    height: 0.6rem;
+    border: none;
+    transition: background 250ms;
+    transform: rotate(45deg);
+}
+
+.task-div input[type='checkbox']:checked {
+    background: #3b82f6;
+    border: none;
+}
+
+.task-div input[type='checkbox']:not([disabled]), .task-div input[type='checkbox']:focus  {
+    background: #e2e8f0;
+    border: none;
+}
+
+.task-div input[type='checkbox']:focus  {
+    box-shadow: 0 0 0 2px #60a5fa;
+}
+
+.task-div input[type='checkbox']:not([disabled]):checked, .task-div input[type='checkbox']:checked:focus  {
+    background: #3b82f6;
+    border: none;
 }
 
 .task-div img {

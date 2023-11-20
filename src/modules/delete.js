@@ -10,7 +10,7 @@ function deleteTask() {
                 if (element.id === taskId) return taskId = index;
             });
             inboxArray.splice(taskId,1)
-            e.target.parentElement.remove()
+            e.target.parentElement.parentElement.remove()
             console.log(inboxArray)
             localStorage.clear()
             localStorage.setItem('task', JSON.stringify(inboxObject))

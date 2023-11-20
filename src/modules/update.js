@@ -12,7 +12,7 @@ function updateTask() {
             update.addEventListener('click', (e) => {
                 document.getElementById('updateTaskPopup').classList.add('active')                     
                 projectOption()
-                let taskId = e.target.parentElement.id
+                let taskId = e.target.parentElement.parentElement.id
                 formUpdater(taskId)
                 submitUpdate(taskId)
             })

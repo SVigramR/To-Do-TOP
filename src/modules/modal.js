@@ -21,13 +21,17 @@ function createTaskDom(index, title, date, priority) {
     taskDiv.setAttribute('id', index)
     taskDiv.classList.add('task-div', priority)
 
+    const taskDivOne = document.createElement('div')
+    taskDivOne.classList.add('task-div-one')
     const checkBox = document.createElement('input')
     checkBox.setAttribute('type', 'checkbox')
     const taskTitle = document.createElement('p')
     taskTitle.textContent = title
+
+    const taskDivTwo = document.createElement('div')
+    taskDivTwo.classList.add('task-div-two')
     const taskDate = document.createElement('p')
     taskDate.textContent = date
-
     // const changePriority = document.createElement('img')
     // changePriority.setAttribute('src', reportIcon)
     const updateTask = document.createElement('img')
@@ -37,7 +41,9 @@ function createTaskDom(index, title, date, priority) {
     taskDelete.setAttribute('src', deleteIcon)
     taskDelete.setAttribute('class', 'delete')
     
-    taskDiv.append(checkBox, taskTitle, taskDate, updateTask, taskDelete)
+    taskDivTwo.append(taskDate, updateTask, taskDelete)
+    taskDivOne.append(checkBox, taskTitle)
+    taskDiv.append(taskDivOne, taskDivTwo)
     taskContainer.appendChild(taskDiv)
 }
 
