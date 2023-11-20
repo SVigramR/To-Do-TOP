@@ -130,7 +130,10 @@ function projectEventListener() {
     const defaultProjectDiv = document.querySelectorAll('.project-list')
     const taskContainer = document.getElementById('task-container')
     const getItem = JSON.parse(localStorage.getItem('task'))
-    const projectKeys = Object.keys(getItem)
+    let projectKeys;
+    if (getItem) {
+        projectKeys = Object.keys(getItem)
+    }
     defaultProjectDiv.forEach(defaultProject => {
         defaultProject.addEventListener('click', () => {
             if (projectKeys.includes(defaultProject.id)) {

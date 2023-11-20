@@ -122,6 +122,9 @@ function init() {
 init()
 
 window.onload = () => {
+    if (localStorage.getItem('task') === null) {
+        localStorage.setItem('task', JSON.stringify(inboxObject))
+    }
     retrieveStorage()
     projectEventListener()
     deleteTask()
