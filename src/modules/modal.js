@@ -4,7 +4,8 @@ import deleteIcon from '../Icons/delete.png'
 import { appendTasks, filterTaskArray, inboxArray } from '../script'
 import { evaluatePendingDays, evaluateUpcomingdays, evaluateWeekDays, filterDate, formatDate } from './date'
 import { deleteProject, deleteTask } from './delete'
-import updateTask from './update'
+import {updateTask} from './update'
+import togglecheck from './complete'
 
 function createProjectDom(projectName) {
     const projectMenu = document.querySelector('.project-menu')
@@ -25,6 +26,7 @@ function createTaskDom(index, title, date, priority) {
     taskDivOne.classList.add('task-div-one')
     const checkBox = document.createElement('input')
     checkBox.setAttribute('type', 'checkbox')
+    checkBox.setAttribute('class', 'check-box')
     const taskTitle = document.createElement('p')
     taskTitle.textContent = title
 
@@ -64,6 +66,7 @@ function dateEventListener() {
             if (defaultProject.id === 'inbox') {
                 taskContainer.innerHTML = ''
                 appendTasks()
+                togglecheck()
                 deleteTask()
                 updateTask()
             } else if (defaultProject.id === 'today') {
@@ -73,6 +76,7 @@ function dateEventListener() {
                     const filteredTodayValue = Object.values(filteredToday[index])
                     createTaskDom(filteredTodayValue[6], filteredTodayValue[0], filteredTodayValue[2], filteredTodayValue[3])
                 }
+                togglecheck()
                 deleteTask()
                 updateTask()
             } else if (defaultProject.id === 'week') {
@@ -86,6 +90,7 @@ function dateEventListener() {
                         createTaskDom(filteredWeekValue[6], filteredWeekValue[0], filteredWeekValue[2], filteredWeekValue[3])   
                     }
                 }
+                togglecheck()
                 deleteTask()
                 updateTask()
             } else if (defaultProject.id === 'upcoming') {
@@ -98,6 +103,7 @@ function dateEventListener() {
                         createTaskDom(filteredUpcomingValue[6], filteredUpcomingValue[0], filteredUpcomingValue[2], filteredUpcomingValue[3])                       
                     }
                 }
+                togglecheck()
                 updateTask()
                 deleteTask()
             } else if (defaultProject.id === 'pending') {
@@ -110,11 +116,12 @@ function dateEventListener() {
                         createTaskDom(filteredPendingValue[6], filteredPendingValue[0], filteredPendingValue[2], filteredPendingValue[3])                       
                     }
                 }
-                deleteTask() 
+                togglecheck()
+                deleteTask()
                 updateTask()
-            } else if (defaultProject.id === 'completed') {
-                taskContainer.innerHTML = ''
-            }
+            } // else if (defaultProject.id === 'completed') {
+            //     taskContainer.innerHTML = ''
+            // }
         });
     });
 }
@@ -138,6 +145,7 @@ function projectEventListener() {
                         createTaskDom(filteredValue[6], filteredValue[0], filteredValue[2], filteredValue[3])  
                     }
                 }
+                togglecheck()
                 deleteTask()
                 updateTask()
             }

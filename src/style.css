@@ -129,6 +129,10 @@ li {
     gap: 10px;
 }
 
+.task-complete {
+    text-decoration: line-through;
+}
+
 .task-div-one {
     display: flex;
     align-items: center;

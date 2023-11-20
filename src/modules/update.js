@@ -32,22 +32,6 @@ function updateTask() {
             })
         })
 
-        const taskObject = (taskId) => {
-            let task
-            inboxArray.forEach((element) => {
-                if (element.id === taskId) return task = element;
-            });
-            return task
-        }
-
-        const taskIndex = (taskId) => {
-            let taskIndex;
-            inboxArray.forEach((element, index) => {
-                if (element.id === taskId) return taskIndex = index;
-            });
-            return taskIndex;
-        }
-
         const formUpdater = (taskId) => {
             let task = taskObject(taskId)
             const dateUpdater = (date) => {
@@ -139,4 +123,20 @@ function updateTask() {
         }
 }
 
-export default updateTask;
+const taskObject = (taskId) => {
+    let task
+    inboxArray.forEach((element) => {
+        if (element.id === taskId) return task = element;
+    });
+    return task
+}
+
+const taskIndex = (taskId) => {
+    let taskIndex;
+    inboxArray.forEach((element, index) => {
+        if (element.id === taskId) return taskIndex = index;
+    });
+    return taskIndex;
+}
+
+export { updateTask, taskObject, taskIndex};

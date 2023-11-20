@@ -5,7 +5,8 @@ import { createProjectDom, createTaskDom, createDeleteProject, dateEventListener
 import { formatDate, formatStringToDate } from './modules/date';
 import { retrieveStorage } from './modules/storage';
 import { deleteTask, deleteProject} from './modules/delete';
-import updateTask from './modules/update';
+import {updateTask} from './modules/update';
+import togglecheck from './modules/complete';
 
 console.log("Test Run")
 export let inboxArray = []
@@ -132,4 +133,5 @@ window.onload = () => {
     projectEventListener()
     deleteTask()
     updateTask()
+    togglecheck()
 } 
