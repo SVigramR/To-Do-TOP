@@ -1,7 +1,11 @@
 import { addDays, format, getDay, isAfter, nextSunday, startOfWeek, parse, isBefore } from "date-fns";
 
 function formatDate(getDate) {
-    return format(new Date(Date.parse(getDate)), 'LLL do yyyy')
+    if (getDate === '') {
+        return getDate
+    } else {
+        return format(new Date(Date.parse(getDate)), 'LLL do yyyy')
+    }
 }
 
 function filterDate(date, arrayObject) {
