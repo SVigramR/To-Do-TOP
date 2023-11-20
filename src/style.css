@@ -63,8 +63,12 @@
     background-color: #868885;
 }
 
-.task-list:first-child {
+/* .task-first {
     margin-bottom: 1rem;
+} */
+
+.project-holder {
+    margin-top: 2rem;
 }
 
 .add-task {
