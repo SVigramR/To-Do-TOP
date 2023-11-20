@@ -19,6 +19,11 @@
     grid-column: 1 / 3;
 }
 
+#title {
+    color: whitesmoke;
+    font-size: 4rem;
+}
+
 .menu-container {
     background-color: #969b94;
     padding: 4rem;
